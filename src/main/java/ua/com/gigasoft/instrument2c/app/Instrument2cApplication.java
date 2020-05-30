@@ -1,4 +1,4 @@
-package ua.com.gigasoft.instrument2c;
+package ua.com.gigasoft.instrument2c.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
