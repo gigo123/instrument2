@@ -1,0 +1,25 @@
+package ua.com.gigasoft.instrument2c.mainModel;
+
+import java.time.LocalDate;
+
+public class ExDocCatalog  extends DocCatalog{
+	
+	public ExDocCatalog(int year, int number,String numberString, LocalDate date) {
+		super(year,number, numberString,date);
+		
+	}
+	public ExDocCatalog() {
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "ExDocCatalog [getTotalInstrum()=" + getTotalInstrum() + ", getTotalAmount()=" + getTotalAmount()
+				+ ", getNumberString()=" + getNumberString() + ", getId()=" + getId() + ", getYear()=" + getYear()
+				+ ", getNumber()=" + getNumber() + ", getDate()=" + getDate() + "]";
+	}
+	
+	
+	
+	
+}
