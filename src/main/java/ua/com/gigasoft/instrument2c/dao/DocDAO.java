@@ -2,10 +2,10 @@ package ua.com.gigasoft.instrument2c.dao;
 
 import java.util.List;
 
-import models.DocModel;
-import models.ExDoc;
-import savvats.DocType;
 
+import ua.com.gigasoft.instrument2c.mainModel.DocModel;
+import ua.com.gigasoft.instrument2c.mainModel.ExDoc;
+import ua.com.gigasoft.instrument2c.secondModel.DocType;
 
 public interface DocDAO {
 	public boolean createExDoc(DocModel Doc, DocType docType);

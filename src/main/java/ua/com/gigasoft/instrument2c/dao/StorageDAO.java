@@ -2,8 +2,7 @@ package ua.com.gigasoft.instrument2c.dao;
 
 import java.util.List;
 
-import models.Storage;
-
+import ua.com.gigasoft.instrument2c.mainModel.Storage;
 public interface StorageDAO {
 	public Storage getStorageByID(long id);
 	public List<Storage> getStorageByinstrument( long instrumentId);

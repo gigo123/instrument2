@@ -1,11 +1,7 @@
 package ua.com.gigasoft.instrument2c.dao;
 
 import java.util.List;
-
-
-import models.Instrument;
-import models.Storage;
-
+import ua.com.gigasoft.instrument2c.mainModel.Instrument;
 public interface InstrumentDAO {
 	public Instrument getInstrumentByID(long id);
 	public Instrument getInstrumentByName(String name);

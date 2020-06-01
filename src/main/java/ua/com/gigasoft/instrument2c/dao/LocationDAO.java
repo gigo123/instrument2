@@ -2,8 +2,7 @@ package ua.com.gigasoft.instrument2c.dao;
 
 import java.util.List;
 
-import models.Location;
-
+import ua.com.gigasoft.instrument2c.mainModel.Location;
 public interface LocationDAO {
 	public  boolean createLocation(Location location);
 	public Location getLocById(long id);

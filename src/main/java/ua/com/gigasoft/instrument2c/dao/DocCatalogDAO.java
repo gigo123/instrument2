@@ -3,7 +3,7 @@ package ua.com.gigasoft.instrument2c.dao;
 import java.time.LocalDate;
 import java.util.List;
 
-import models.DocCatalog;
+import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
 
 public interface DocCatalogDAO {
 
