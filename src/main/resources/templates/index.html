@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Good Thymes Virtual Grocery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Favicons -->
+<link rel="shortcut icon" th:href="@{/img/favicon.ico}"
+	type="image/x-icon">
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/vendor.css" th:href="@{/css/vendor.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<!-- Main Wrapper Start -->
+	<div class="wrapper">
+		<!-- Header Start -->
+		<header class="header">
+			<div class="header__inner ">
+				<div class="header__main">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-12">
+								<div class="header__main-inner">
+									<div class="header__main-left">
+										<div class="logo">
+											<a href="index.html" class="logo--normal"> <img
+												th:src="@{/img/logo.png}" alt="Logo">
+											</a>
+										</div>
+									</div>
+									<div class="header__main-center">
+										<nav class="main-navigation text-center d-none d-lg-block">
+
+											<ul class="mainmenu">
+												<li class="mainmenu__item"><a href="./"
+													class="mainmenu__link"> <span class="mm-text">начальная
+															страница</span>
+												</a></li>
+												<li class="mainmenu__item"><a href="./operation"
+													class="mainmenu__link"> <span class="mm-text">операции</span>
+												</a></li>
+												<!--my menu  -->
+												<li class="mainmenu__item"><a href="./doc"
+													class="mainmenu__link"> <span class="mm-text">документы</span>
+												</a></li>
+												<li class="mainmenu__item"><a href="./report"
+													class="mainmenu__link"> <span class="mm-text">отчеты</span>
+												</a></li>
+												<!--my menu  -->
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- Header End -->
+		<div class="main-content-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="col-9 mb--50">
+						<div class="login-box">
+							<p>система управління обліком іструментів</p>
+						</div>
+					</div>
+					<!--  close div of SideMenuView -->
+				</div>
+			</div>
+
+			<!-- Footer Start-->
+			<footer class="footer bg-color" data-bg-color="#f4f8fa">
+				<div class="footer-bottom">
+					<div class="container-fluid">
+						<div class="row border-top ptb--20">
+							<div class="col-12 text-center">
+								<p class="copyright-text">created by Taras Hopka 2019 all
+									rights reserved</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- Footer End-->
+
+
+			<!-- Global Overlay Start -->
+			<div class="global-overlay"></div>
+			<!-- Global Overlay End -->
+		</div>
+		<!-- Global Overlay Start -->
+		<a class="scroll-to-top" href=""><i class="la la-angle-double-up"></i></a>
+		<!-- Global Overlay End -->
+		<!-- Main Wrapper End -->
+	</div>
+
+	<!-- ************************* JS Files ************************* -->
+
+	<!-- jQuery JS -->
+	<script th:src="@{/js/vendor.js}">
+		
+	</script>
+	<!-- Main JS -->
+	<script th:src="@{/resources/js/main.js}">
+		
+	</script>
+
+</body>
+
+</html>
