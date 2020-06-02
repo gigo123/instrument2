@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8"/>
+<body>
+
+	<div th:fragment="header">
+		<div class="header__inner ">
+			<div class="header__main">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="header__main-inner">
+								<div class="header__main-left">
+									<div class="logo">
+										<a href="index.html" class="logo--normal"> <img
+											th:src="@{/img/logo.png}" alt="Logo">
+										</a>
+									</div>
+								</div>
+								<div class="header__main-center">
+									<nav class="main-navigation text-center d-none d-lg-block">
+
+										<ul class="mainmenu">
+											<li class="mainmenu__item"><a href="./"
+												class="mainmenu__link"> <span class="mm-text">начальная
+														страница</span>
+											</a></li>
+											<li class="mainmenu__item"><a href="./operation"
+												class="mainmenu__link"> <span class="mm-text">операции</span>
+											</a></li>
+											<!--my menu  -->
+											<li class="mainmenu__item"><a href="./doc"
+												class="mainmenu__link"> <span class="mm-text">документы</span>
+											</a></li>
+											<li class="mainmenu__item"><a href="./report"
+												class="mainmenu__link"> <span class="mm-text">отчеты</span>
+											</a></li>
+											<!--my menu  -->
+										</ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
