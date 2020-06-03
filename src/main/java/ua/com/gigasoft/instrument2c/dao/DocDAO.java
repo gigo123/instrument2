@@ -5,7 +5,7 @@ import java.util.List;
 
 import ua.com.gigasoft.instrument2c.mainModel.DocModel;
 import ua.com.gigasoft.instrument2c.mainModel.ExDoc;
-import ua.com.gigasoft.instrument2c.secondModel.DocType;
+import ua.com.gigasoft.instrument2c.support.DocType;
 
 public interface DocDAO {
 	public boolean createExDoc(DocModel Doc, DocType docType);

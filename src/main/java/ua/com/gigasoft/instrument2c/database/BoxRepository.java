@@ -13,12 +13,12 @@ import ua.com.gigasoft.instrument2c.mainModel.Box;
 @Repository
 public interface BoxRepository extends JpaRepository<Box,Long>{
 
-	@Query("SELECT b FROM box b WHERE b.number = :number and b.location.id = :location ")
+	@Query("SELECT b FROM Box b WHERE b.number = :number and b.location.id = :location ")
 	public Optional<Box> getBoxByNumber(@Param("number")int number, @Param("location")long idLocation);
-	public boolean hasError();
-	public boolean updateBox(long id,Box box);
-	public List<Box> getAllBox();
-	public List<Box> getNotEmptyBox();
-	public List<Box> getNotEmptyBoxByLocation(long idLocation);
-	public List<Box> getAllBoxByLocation(long idLocation);
+	//public boolean hasError();
+	//public boolean updateBox(long id,Box box);
+//	public List<Box> getAllBox();
+//	public List<Box> getNotEmptyBox();
+//	public List<Box> getNotEmptyBoxByLocation(long idLocation);
+	//public List<Box> getAllBoxByLocation(long idLocation);
 }
