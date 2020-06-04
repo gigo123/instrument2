@@ -25,24 +25,23 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-9 mb--50">
-						<form action="#" th:action="@{/addBox)}"
-							th:object="${boxList}" method="post">
+						<form action="#" th:action="@{/addBox}" th:object="${boxListLocation}"  method="post">
 							<div class="row mb--20">
-			<div class="col-12">
-				<label for="manyBox">создание диапазона ячеек</label>
-				<input type="radio" th:field =${boxList.manyBox}  th:value="${false}"  >
-				<label>одна</label>
-				<input type="radio" th:field =${boxList.manyBox}  th:value="${true}"  >
-				<label>диапазон"</label>
-			</div>
-		</div>
-							<label for="name">Name</label> <input type="text"
+								<div class="col-12">
+									<label for="manyBox">создание диапазона ячеек</label> 
+									<input type="radio" th:field="*{manyBox}" th:value="${false}">
+									<label>одна</label> 
+									<input type="radio" th:field="*{manyBox}" th:value="${true}"> <label>диапазон</label>
+								</div>
+							</div>
+			<!--  			<label for="name">Name</label> <input type="text"
 								th:field="*{name}" id="name" placeholder="Name"> <span
 								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 							<label for="email">Email</label> <input type="text"
 								th:field="*{email}" id="email" placeholder="Email"> <span
 								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 							<input type="submit" value="Update User">
+							-->
 						</form>
 					</div>
 					<!--  close div of SideMenuView -->
