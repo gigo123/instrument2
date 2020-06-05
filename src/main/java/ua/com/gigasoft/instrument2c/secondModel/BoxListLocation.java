@@ -2,10 +2,12 @@ package ua.com.gigasoft.instrument2c.secondModel;
 
 
 
+import java.util.Map;
+
 import ua.com.gigasoft.instrument2c.mainModel.Box;
 
 public class BoxListLocation extends Box{
-	private String locationWB;
+	private Map<Long, String> locationWB;
 	private String startNum;
 	private String endNum;
 	private String manyBox;
@@ -34,11 +36,13 @@ public class BoxListLocation extends Box{
 		this.endNum = endNum;
 	}
 
-	public String getLocationWB() {
+	
+
+	public Map<Long, String> getLocationWB() {
 		return locationWB;
 	}
 
-	public void setLocationWB(String locationWB) {
+	public void setLocationWB(Map<Long, String> locationWB) {
 		this.locationWB = locationWB;
 	}
 
