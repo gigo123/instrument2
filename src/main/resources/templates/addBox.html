@@ -25,23 +25,59 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-9 mb--50">
-						<form action="#" th:action="@{/addBox}" th:object="${boxListLocation}"  method="post">
+						<form action="#" th:action="@{/addBox}"
+							th:object="${boxListLocation}" method="post">
 							<div class="row mb--20">
 								<div class="col-12">
-									<label for="manyBox">создание диапазона ячеек</label> 
-									<input type="radio" th:field="*{manyBox}" th:value="${false}">
-									<label>одна</label> 
-									<input type="radio" th:field="*{manyBox}" th:value="${true}"> <label>диапазон</label>
+									<label for="manyBox">создание диапазона ячеек</label> <input
+										type="radio" th:field="*{manyBox}" th:value="${false}">
+									<label>одна</label> <input type="radio" th:field="*{manyBox}"
+										th:value="${true}"> <label>диапазон</label>
 								</div>
 							</div>
-			<!--  			<label for="name">Name</label> <input type="text"
-								th:field="*{name}" id="name" placeholder="Name"> <span
-								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-							<label for="email">Email</label> <input type="text"
-								th:field="*{email}" id="email" placeholder="Email"> <span
-								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-							<input type="submit" value="Update User">
-							-->
+							<div class="row mb--20">
+								<div class="col-6">
+									<div class="form__group">
+										<label class="form__label" for="number"> номер ячейки
+										</label> <input th:field="*{number}" type="text" name="number"
+											id="number" class="form__input" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-3">
+									<label for="locationWB">место хранения</label>
+								</div>
+								<div class="col-3">
+									<select class="form-control selectpicker"
+										th:field="*{locationWB}" id="locationWB">
+										<option value="">Nothing selected</option>
+										<option th:each="location : ${boxListLocation.locationWB}"
+											th:value="${location}" th:text="${location.id}">pizza</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-3">
+									<label for="startNum" class="form__label"> начальная
+										ячейка </label> <input th:field="*{startNum}" type="number"
+										id="startNum}" class="form__input" />
+								</div>
+								<div class="col-3">
+									<label class="form__label" for="endNum"> конечная
+										ячейка </label> <input th:field="*{endNum}" type="number"
+										name="endNumendNum" id="endNum" class="form__input" />
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-12">
+									<div class="form__group">
+										<input type="submit" value="создать ячейку"
+											class="btn btn-size-md" />
+									</div>
+								</div>
+							</div>
 						</form>
 					</div>
 					<!--  close div of SideMenuView -->
