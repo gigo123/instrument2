@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ua.com.gigasoft.instrument2c.dao.LocationDAO;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 
+@Service
 public class LocationJPADAO implements LocationDAO {
 
 	@Autowired
