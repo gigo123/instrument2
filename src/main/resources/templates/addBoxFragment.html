@@ -31,7 +31,7 @@
 					<label for="locationWB">место хранения</label>
 				</div>
 				<div class="col-3">
-					<select class="form-control selectpicker" th:field="${locationWB}"
+					<select class="form-control selectpicker" th:field="*{locationWB}"
 						id="locationWB">
 						<option th:each="entry : ${locationWB.entrySet()}"
 							th:value="${entry.key}" th:text="${entry.value}">This

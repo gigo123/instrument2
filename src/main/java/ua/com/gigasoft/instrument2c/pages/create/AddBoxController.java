@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
@@ -30,6 +34,13 @@ public class AddBoxController {
 		 model.addAttribute("boxList", boxlist);
 		 model.addAttribute("locationWB", locationWB);
 		return "addBox";
+	}
+	
+	@PostMapping("/addBox")
+    public String addBox(@Valid BoxListLocation boxlist,BindingResult result, Model model) {
+		System.out.println(boxlist);
+		
+		return "index";
 	}
 
 }
