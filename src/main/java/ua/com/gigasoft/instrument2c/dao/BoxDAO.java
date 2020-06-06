@@ -8,8 +8,8 @@ import ua.com.gigasoft.instrument2c.mainModel.Box;
 public interface BoxDAO {
 	public Optional<Box> getBoxByID(long id);
 	public Optional<Box> getBoxByNumber(int number,long idLocation);
-	public boolean createBox(Box box);
-	public boolean deleteBox(long id);
+	public void createBox(Box box);
+	public void deleteBox(Box box);
 	public boolean hasError();
 	public boolean updateBox(long id,Box box);
 	public List<Box> getAllBox();
