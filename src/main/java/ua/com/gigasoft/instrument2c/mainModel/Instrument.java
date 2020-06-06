@@ -1,9 +1,17 @@
 package ua.com.gigasoft.instrument2c.mainModel;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
+@Entity
+@Table(name = "instrument")  
 public class Instrument {
+	 @Id 
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	 @Size(min = 4, max = 30, message = "имя должно бить от 4 до 20 символов")
 	private String name;
