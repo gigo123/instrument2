@@ -24,21 +24,19 @@ public class AddBoxController {
 	
 	@GetMapping("/addBox")
 	public String getAddBoxCF(BoxListLocation boxList,Model model) {
-		BoxListLocation boxlist = new BoxListLocation();
 		Map<Long, String> locationWB = new HashMap<Long, String>();
 		List<Location> locList = locDAO.getAllLocatinWB();
 		for (Location location : locList) {
 			locationWB.put(location.getId(), location.getName());
 		}
 	
-		 model.addAttribute("boxList", boxlist);
 		 model.addAttribute("locationWB", locationWB);
 		return "addBox";
 	}
 	
 	@PostMapping("/addBox")
-    public String addBox(@Valid BoxListLocation boxlist,BindingResult result, Model model) {
-		System.out.println(boxlist);
+    public String addBox(@Valid BoxListLocation boxList,BindingResult result, Model model) {
+		System.out.println(boxList);
 		
 		return "index";
 	}
