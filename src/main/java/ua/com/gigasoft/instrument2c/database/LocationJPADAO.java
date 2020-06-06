@@ -15,9 +15,8 @@ public class LocationJPADAO implements LocationDAO {
 	@Autowired
     private LocationRepository locationRepo;
 	@Override
-	public boolean createLocation(Location location) {
-		// TODO Auto-generated method stub
-		return false;
+	public void createLocation(Location location) {
+		locationRepo.save(location);
 	}
 
 	@Override
@@ -26,11 +25,9 @@ public class LocationJPADAO implements LocationDAO {
 	}
 
 	@Override
-	public Location getLocByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<Location> getLocByName(String name) {
+		return locationRepo.getLocByName(name);
 	}
-
 	@Override
 	public List<Location> getAllLocatin() {
 		return locationRepo.findAll();
