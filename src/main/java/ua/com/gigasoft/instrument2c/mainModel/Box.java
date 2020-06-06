@@ -12,18 +12,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.PositiveOrZero;
 
+import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
+
 @Entity
 @Table(name = "box")  
 public class Box {
 	 @Id 
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	 @ManyToOne(fetch=FetchType.LAZY, 
+     cascade=CascadeType.ALL)
+	 @JoinColumn (name="location")
+		private Location location;
 	@PositiveOrZero (message = "ячейка должна бить положительным числом")
 	private int number;
-	@ManyToOne(fetch=FetchType.LAZY, 
-            cascade=CascadeType.ALL)
-    @JoinColumn (name="location")
-	private Location location;
+	
+    
 	@Column (name="notEmpty")
 	private boolean notEmpty;
 	
@@ -43,6 +47,7 @@ public class Box {
 	public int getNumber() {
 		return number;
 	}
+
 	public void setNumber(int number) {
 		this.number = number;
 	}

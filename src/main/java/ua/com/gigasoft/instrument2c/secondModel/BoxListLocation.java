@@ -2,15 +2,15 @@ package ua.com.gigasoft.instrument2c.secondModel;
 
 
 
-import ua.com.gigasoft.instrument2c.mainModel.Box;
-
-public class BoxListLocation extends Box{
+import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
+@AddBoxNumer()
+public class BoxListLocation {
 	private String startNum;
 	private String endNum;
 	private String manyBox;
 	private String locationWB;
-	
-	
+	private int number;
+
 	public String getManyBox() {
 		return manyBox;
 	}
@@ -51,11 +51,14 @@ public class BoxListLocation extends Box{
 		this.endNum = endNum;
 	}
 
-	
 
-	
+	public int getNumber() {
+		return number;
+	}
 
-
+	public void setNumber(int number) {
+		this.number = number;
+	}
 
 	public BoxListLocation() {
 
