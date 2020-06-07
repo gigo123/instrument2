@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import ua.com.gigasoft.instrument2c.customValidator.AddInstrumentValidator;
 @Entity
+@AddInstrumentValidator
 @Table(name = "instrument")  
 public class Instrument {
 	 @Id 
@@ -16,7 +19,7 @@ public class Instrument {
 	 @Size(min = 4, max = 30, message = "имя должно бить от 4 до 20 символов")
 	private String name;
 	private String comment;
-	@NotEmpty
+	@NotEmpty(message = "заполнить ед изм")
 	private String measure;
 	private float totalNumber;
 	

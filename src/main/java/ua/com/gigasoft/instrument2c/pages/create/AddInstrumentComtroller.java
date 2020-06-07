@@ -20,6 +20,10 @@ public class AddInstrumentComtroller {
 	@PostMapping("/addinstrument")
     public String addInsturmnet(@Validated Instrument instrument, 
 	BindingResult bindingResult, Model model) {
+		 if (bindingResult.hasErrors()) {
+			 System.out.println(bindingResult.getAllErrors());
+	            return "addInstrument";
+	        }
 		System.out.println(instrument);
 		return "index";
 	}
