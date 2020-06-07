@@ -28,9 +28,13 @@ public class AddLocationController {
 
 	@PostMapping("/addlocation")
     public String addLocation(@Validated Location location, 
-	BindingResult bindingResult, Model model) {
-	
-		check.addLocationWork(location);
+	BindingResult result, Model model) {
+		 if (result.hasErrors()) {
+			 System.out.println(result.getAllErrors());
+	            return "addLocation";
+	        }
+		//check.addLocationWork(location);
+		 System.out.println("no error");
 		return "index";
 	}
 	

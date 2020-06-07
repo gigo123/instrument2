@@ -13,6 +13,7 @@
 						<label class="form__label" for="name"> 	Название места хранения </label> <input
 							th:field="*{name}" type="text" name="name" id="name"
 							class="form__input" />
+							<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">error</span>
 					</div>
 				</div>
 			</div>

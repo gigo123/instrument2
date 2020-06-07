@@ -11,7 +11,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import ua.com.gigasoft.instrument2c.customValidator.AddLocationValidator;
+
 @Entity
+@AddLocationValidator
 @Table(name = "location")  
 public class Location {
 	 @Id 
