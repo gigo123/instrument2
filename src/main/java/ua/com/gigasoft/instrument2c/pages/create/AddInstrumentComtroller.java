@@ -25,12 +25,13 @@ public class AddInstrumentComtroller {
 	@PostMapping("/addinstrument")
     public String addInsturmnet(@Validated Instrument instrument, 
 	BindingResult bindingResult, Model model) {
+		model.addAttribute("page", "instrument");	
 		 if (bindingResult.hasErrors()) {
 			 System.out.println(bindingResult.getAllErrors());
 	            return "addInstrument";
 	        }
 		 check.addInstrumentWork(instrument);
-		return "index";
+		 return "operation";
 	}
 
 }

@@ -29,18 +29,21 @@ public class AddBoxController {
 	
 	@GetMapping("/addBox")
 	public String getAddBoxCF(BoxListLocation boxList,Model model) {
+		model.addAttribute("page", "addbox");
 		return "addBox";
 	}
 	
 	@PostMapping("/addBox")
     public String addBox(@Valid BoxListLocation boxList,BindingResult result, Model model) {
+		model.addAttribute("page", "addbox");
 		 if (result.hasErrors()) {
 			 System.out.println(result.getAllErrors());
 	            return "addBox";
 	        }
 		 check.addBoxWork(boxList);
 		
-		return "index";
+		 
+		return "operation";
 	}
 
 	
