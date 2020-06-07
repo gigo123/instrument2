@@ -9,8 +9,8 @@
 
 			<div class="row mb--20">
 				<div class="col-12">
-					<label for="manyBox">создание диапазона ячеек</label> <input
-						type="radio" th:field="*{manyBox}" th:value="O"> <label>одна</label>
+					<label th:for=*{manyBox}>создание диапазона ячеек</label> <input
+						type="radio" th:field="*{manyBox}" th:value="O" > одна
 					<input type="radio" th:field="*{manyBox}" th:value="M">
 					<label>диапазон</label>
 				</div>
@@ -22,6 +22,7 @@
 						<label class="form__label" for="number"> номер ячейки </label> <input
 							th:field="*{number}" type="text" name="number" id="number"
 							class="form__input" />
+							<span th:if="${#fields.hasErrors('number')}" th:errors="*{number}">error</span>
 							 <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}">error</span>
 					</div>
 				</div>
