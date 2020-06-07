@@ -7,7 +7,7 @@ import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
 public class BoxListLocation {
 	private String startNum;
 	private String endNum;
-	private String manyBox;
+	private String manyBox ="O";
 	private String locationWB;
 	private int number;
 
