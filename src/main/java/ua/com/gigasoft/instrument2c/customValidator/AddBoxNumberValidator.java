@@ -26,7 +26,7 @@ public class AddBoxNumberValidator implements ConstraintValidator<AddBoxNumer, O
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
 		String locationN = (String) new BeanWrapperImpl(value).getPropertyValue("locationWB");
-
+		context.disableDefaultConstraintViolation();
 		String manyBox = (String) new BeanWrapperImpl(value).getPropertyValue("manyBox");
 		int number = (int) new BeanWrapperImpl(value).getPropertyValue("number");
 		long locId = Long.parseLong(locationN);
@@ -34,9 +34,9 @@ public class AddBoxNumberValidator implements ConstraintValidator<AddBoxNumer, O
 		if (loc.isPresent()) {
 			if (manyBox.equals("O")) {
 				Optional<Box> tempBox = boxDAO.getBoxByNumber(number, locId);
-				System.out.println("chek box");
 				if (tempBox.isPresent()) {
-					System.out.println(" ячейка с таким номером уже существует ");
+					context.buildConstraintViolationWithTemplate("ячейка с таким номером уже существует")
+					.addPropertyNode("number").addConstraintViolation();
 					return false;
 				}
 			}
