@@ -33,8 +33,7 @@ public class AddLocationController {
 			 System.out.println(result.getAllErrors());
 	            return "addLocation";
 	        }
-		//check.addLocationWork(location);
-		 System.out.println("no error");
+		check.addLocationWork(location);
 		return "index";
 	}
 	

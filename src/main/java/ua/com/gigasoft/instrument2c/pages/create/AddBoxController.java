@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,11 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.BoxListLocation;
+import ua.com.gigasoft.instrument2c.support.addPageWorker;
 
 @Controller
 public class AddBoxController {
 	@Autowired
 	private LocationJPADAO locDAO;
+	
+	@Autowired
+	private  addPageWorker check;
 	
 	@GetMapping("/addBox")
 	public String getAddBoxCF(BoxListLocation boxList,Model model) {
@@ -36,7 +38,7 @@ public class AddBoxController {
 			 System.out.println(result.getAllErrors());
 	            return "addBox";
 	        }
-		System.out.println(boxList);
+		 check.addBoxWork(boxList);
 		
 		return "index";
 	}
