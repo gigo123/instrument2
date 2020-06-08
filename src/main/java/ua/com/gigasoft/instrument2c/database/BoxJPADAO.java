@@ -52,8 +52,8 @@ public class BoxJPADAO implements BoxDAO {
 
 	@Override
 	public List<Box> getAllBoxByLocation(long idLocation) {
-		// TODO Auto-generated method stub
-		return null;
+		return boxRepo.getAllBoxByLocation(idLocation);
+
 	}
 
 	@Override

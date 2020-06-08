@@ -20,5 +20,6 @@ public interface BoxRepository extends JpaRepository<Box,Long>{
 //	public List<Box> getAllBox();
 //	public List<Box> getNotEmptyBox();
 //	public List<Box> getNotEmptyBoxByLocation(long idLocation);
-	//public List<Box> getAllBoxByLocation(long idLocation);
+	@Query("SELECT b FROM Box b WHERE  b.location.id = :location ")
+	public List<Box> getAllBoxByLocation(@Param("location")long idLocation);
 }
