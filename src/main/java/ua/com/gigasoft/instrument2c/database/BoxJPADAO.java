@@ -52,8 +52,8 @@ public class BoxJPADAO implements BoxDAO {
 
 	@Override
 	public List<Box> getAllBoxByLocation(long idLocation) {
-		// TODO Auto-generated method stub
-		return null;
+		return boxRepo.getAllBoxByLocation(idLocation);
+
 	}
 
 	@Override
@@ -63,15 +63,13 @@ public class BoxJPADAO implements BoxDAO {
 	}
 
 	@Override
-	public boolean createBox(Box box) {
-		// TODO Auto-generated method stub
-		return false;
+	public void createBox(Box box) {
+		boxRepo.save(box);
 	}
 
 	@Override
-	public boolean deleteBox(long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public void deleteBox(Box box) {
+		boxRepo.delete(box);
 	}
 
 	@Override

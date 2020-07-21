@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<title>add box page</title>
+<title>add instrument page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- Favicons -->
 <link rel="shortcut icon" th:href="@{/img/favicon.ico}"
@@ -24,39 +24,39 @@
 		<div class="main-content-wrapper">
 			<div class="container">
 				<div class="page-content-inner ptb--10 ptb-md--60 pb-sm--55">
-					<div class="row">
-						<div class="col-3" th:insert="~{menuFragment :: createmenu}">
+				<div class="row">
+				<div class="col-3" th:insert="~{menuFragment :: createmenu}">
 						</div>
-						<div class="col-9 mb--50" th:insert="~{addboxFragment :: mainPart}">
+					<div class="col-9 mb--50" th:insert="~{addInstrumentFragment :: mainPart}">
 					</div>
 					<!--  close div of SideMenuView -->
 				</div>
+				</div>
 			</div>
-		</div>
-		<!-- Footer Start-->
-		<footer class="footer bg-color" data-bg-color="#f4f8fa">
-			<div class="footer-bottom">
-				<div class="container-fluid">
-					<div class="row border-top ptb--20">
-						<div class="col-12 text-center">
-							<p class="copyright-text">created by Taras Hopka 2019 all
-								rights reserved</p>
+			<!-- Footer Start-->
+			<footer class="footer bg-color" data-bg-color="#f4f8fa">
+				<div class="footer-bottom">
+					<div class="container-fluid">
+						<div class="row border-top ptb--20">
+							<div class="col-12 text-center">
+								<p class="copyright-text">created by Taras Hopka 2019 all
+									rights reserved</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</footer>
-		<!-- Footer End-->
+			</footer>
+			<!-- Footer End-->
 
 
+			<!-- Global Overlay Start -->
+			<div class="global-overlay"></div>
+			<!-- Global Overlay End -->
+		</div>
 		<!-- Global Overlay Start -->
-		<div class="global-overlay"></div>
+		<a class="scroll-to-top" href=""><i class="la la-angle-double-up"></i></a>
 		<!-- Global Overlay End -->
-	</div>
-	<!-- Global Overlay Start -->
-	<a class="scroll-to-top" href=""><i class="la la-angle-double-up"></i></a>
-	<!-- Global Overlay End -->
-	<!-- Main Wrapper End -->
+		<!-- Main Wrapper End -->
 	</div>
 	<!-- ************************* JS Files ************************* -->
 

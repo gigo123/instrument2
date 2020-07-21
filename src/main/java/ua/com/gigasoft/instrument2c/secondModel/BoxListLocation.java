@@ -2,16 +2,25 @@ package ua.com.gigasoft.instrument2c.secondModel;
 
 
 
-import ua.com.gigasoft.instrument2c.mainModel.Box;
-
-public class BoxListLocation extends Box{
-	private String locationWB;
+import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
+@AddBoxNumer()
+public class BoxListLocation {
 	private String startNum;
 	private String endNum;
-	private String manyBox;
-	
+	private String manyBox ="O";
+	private String locationWB;
+	private int number;
+
 	public String getManyBox() {
 		return manyBox;
+	}
+
+	@Override
+	public String toString() {
+		return "BoxListLocation [" + (startNum != null ? "startNum=" + startNum + ", " : "")
+				+ (endNum != null ? "endNum=" + endNum + ", " : "")
+				+ (manyBox != null ? "manyBox=" + manyBox + ", " : "")
+				+ (locationWB != null ? "locationWB=" + locationWB : "") + "]";
 	}
 
 	public void setManyBox(String manyBox) {
@@ -20,6 +29,14 @@ public class BoxListLocation extends Box{
 
 	public String getStartNum() {
 		return startNum;
+	}
+
+	public String getLocationWB() {
+		return locationWB;
+	}
+
+	public void setLocationWB(String locationWB) {
+		this.locationWB = locationWB;
 	}
 
 	public void setStartNum(String startNum) {
@@ -34,17 +51,17 @@ public class BoxListLocation extends Box{
 		this.endNum = endNum;
 	}
 
-	public String getLocationWB() {
-		return locationWB;
+
+	public int getNumber() {
+		return number;
 	}
 
-	public void setLocationWB(String locationWB) {
-		this.locationWB = locationWB;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
-	@Override
-	public String toString() {
-		return "BoxListLocation [locationWB=" + locationWB + "]";
+	public BoxListLocation() {
+
 	}
 	
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8" />
+<body>
+	<div th:fragment="createmenu"
+		class="user-dashboard-tab flex-column flex-md-row">
+		<div class="user-dashboard-tab__head nav flex-md-column"
+			role="tablist" aria-orientation="vertical">
+			<a class="nav-link"  th:classappend="${page=='operation'}?'active':''"
+							href="./operation">Операции</a>
+			<a class="nav-link" th:classappend="${page=='location'}?'active':''"
+							 href="./addlocation">Добавить
+				место хран</a> 
+				<a class="nav-link" th:classappend="${page=='addbox'}?'active':''"
+							 href="./addBox"
+				aria-selected="true">Добавить Ячейку</a> 
+				<a
+				class="nav-link" th:classappend="${page=='instrument'}?'active':''"
+							href="./addinstrument"
+				aria-selected="true">Добавить Интсрумент</a>
+
+		</div>
+	</div>
+</body>
+
+</html>

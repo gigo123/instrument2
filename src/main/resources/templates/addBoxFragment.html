@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8" />
+<body>
+	<div th:fragment="mainPart">
+		<form action="#" th:action="@{/addBox}" th:object="${boxListLocation}"
+			method="post">
+
+			<div class="row mb--20">
+				<div class="col-6">
+					<label th:for=*{manyBox}>создание диапазона ячеек</label> 
+					<input type="radio" th:field="*{manyBox}" th:value="O" name="manyBox"> одна
+					<input type="radio" th:field="*{manyBox}" th:value="M">
+					<label>диапазон</label>
+				</div>
+			</div>
+
+			<div class="row mb--20">
+				<div class="col-6">
+					<div class="form__group">
+						<label class="form__label" for="number"> номер ячейки </label> 
+						<input class="form-control form__input"
+							th:field="*{number}" type="text" name="number" id="number" />
+							<span th:if="${#fields.hasErrors('number')}" th:errors="*{number}">error</span>
+							 <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}">error</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mb--20">
+				<div class="col-3">
+					<label for="locationWB">место хранения</label>
+				</div>
+				<div class="col-3 mb--20" >
+					<select class="form-control selectpicker" th:field="*{locationWB}"
+						id="locationWB">
+						<option th:each="entry : ${locationWB.entrySet()}"
+							th:value="${entry.key}" th:text="${entry.value}">This
+							will be replaced - is only used for natural templating</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row mb--20">
+				<div class="col-3">
+					<label for="startNum" class="form__label"> начальная ячейка
+					</label> <input  class="form-control form__input" th:field="*{startNum}" type="number" id="startNum}"
+					/>
+				</div>
+				<div class="col-3">
+					<label class="form__label" for="endNum"> конечная ячейка </label> <input
+					class="form-control form__input"
+						th:field="*{endNum}" type="number" name="endNumendNum" id="endNum" />
+				</div>
+			</div>
+
+			<div class="row mb--20">
+				<div class="col-6">
+					<div class="form__group">
+						<input class="form-control btn btn-size-md"  type="submit" value="создать ячейку" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
