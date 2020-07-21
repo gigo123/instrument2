@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>doc main page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- Favicons -->
+<link rel="shortcut icon" th:href="@{/img/favicon.ico}"
+	type="image/x-icon">
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/vendor.css" th:href="@{/css/vendor.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../css/main.css" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<!-- Main Wrapper Start -->
+	<div class="wrapper">
+		<!-- Header Start -->
+		<header class="header">
+			<div th:insert="~{header :: header}"></div>
+		</header>
+
+		<!-- Header End -->
+		<div class="main-content-wrapper">
+			<div class="container">
+				<div class="page-content-inner ptb--10 ptb-md--60 pb-sm--55">
+					<div class="row">
+						<div class="col-3" th:insert="~{menuFragment :: createmenu}">
+						</div>
+						<div class="col-9 mb--50">
+						страница отображения документов 
+					</div>
+					<!--  close div of SideMenuView -->
+				</div>
+			</div>
+		</div>
+		<!-- Footer Start-->
+		<div th:insert="~{footer :: footer}">
+		</div>
+		<!-- Footer End-->
+
+
+		<!-- Global Overlay Start -->
+		<div class="global-overlay"></div>
+		<!-- Global Overlay End -->
+	</div>
+	<!-- Global Overlay Start -->
+	<a class="scroll-to-top" href=""><i class="la la-angle-double-up"></i></a>
+	<!-- Global Overlay End -->
+	<!-- Main Wrapper End -->
+	</div>
+	<!-- ************************* JS Files ************************* -->
+
+	<!-- jQuery JS -->
+	<script th:src="@{/js/vendor.js}">
+		
+	</script>
+	<!-- Main JS -->
+	<script th:src="@{/js/main.js}">
+		
+	</script>
+
+</body>
+
+</html>
