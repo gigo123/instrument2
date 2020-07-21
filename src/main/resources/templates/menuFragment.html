@@ -22,6 +22,33 @@
 
 		</div>
 	</div>
+	<div th:fragment="docmenu"
+		class="user-dashboard-tab flex-column flex-md-row">
+		<div class="user-dashboard-tab__head nav flex-md-column"
+			role="tablist" aria-orientation="vertical">
+			<a class="nav-link"  th:classappend="${page=='doc'}?'active':''"
+							href="./doc">докуметы</a>
+			<a class="nav-link" th:classappend="${page=='location'}?'active':''"
+							 href="./createInDoc"> создать поступление</a> 
+				<a class="nav-link" th:classappend="${page=='addbox'}?'active':''"
+							 href="./addBox"
+				aria-selected="true">создать перемещение</a> 
+				<a
+				class="nav-link" th:classappend="${page=='instrument'}?'active':''"
+							href="./addinstrument"
+				aria-selected="true"> создать списание</a>
+				<a class="nav-link" th:classappend="${page=='location'}?'active':''"
+							 href="./createInDoc">поступления</a> 
+				<a class="nav-link" th:classappend="${page=='addbox'}?'active':''"
+							 href="./addBox"
+				aria-selected="true"> перемещения</a> 
+				<a
+				class="nav-link" th:classappend="${page=='instrument'}?'active':''"
+							href="./addinstrument"
+				aria-selected="true">списания</a>
+
+		</div>
+	</div>
 </body>
 
 </html>
