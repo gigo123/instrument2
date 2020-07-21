@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <body>
 	<div th:fragment="mainPart">
-		<form action="#" th:action="@{/createInDoc}" th:object="${docList}"
+		<form action="#" th:action="@{/createInDoc}" th:object="${docListObject}"
 			method="post">
 			<div class="row mb--20">
 				<div class="col-1">номер</div>
@@ -14,8 +14,7 @@
 				<div class="col-2">количество</div>
 				<div class="col-1">удалить</div>
 			</div>
-			<div th:each="doc,iter : ${docList}">
-				<div class="row mb--20" th:each="doc,iter : ${docList}">
+				<div class="row mb--20" th:each="doc,iter : ${docListObject.docList}">
 					<div class="col-1">
 						<span th:text="${iter.index}+1"></span>
 					</div>
@@ -49,11 +48,12 @@
 					</div>
 					<div class="col-1">
 						<input type="button" value="remove"
-							onclick="removeRow('${iter.index}')">
+							th:onclick="removeRow([[${iter.index}]])">
 					</div>
 				</div>
-			</div>
-
+<input type="submit" value="создать документ" class="btn btn-size-md" />
+		<input class="btn btn-size-md" id="searchInstrument" value="add row"
+			onclick="addRow()" />
 		</form>
 		<script>
 		function searchOutBox(id) {
@@ -92,6 +92,15 @@
 		}
 	});
 }
+		
+		function addRow() {
+			  window.location.href = "/createInDoc/addRow";
+			}
+			function removeRow(id) {
+				window.location.href = "/createExDoc?removeRow=" + id;
+					
+			}
+
 </script>
 	</div>
 

@@ -20,7 +20,6 @@ public class ExDocWEBList {
 	
 	public ExDocWEBList() {
 	}
-	@Autowired(required = true)
 	public ExDocWEBList(@Valid List<ExDocWEB> docList) {
 		super();
 		this.docList = docList;
