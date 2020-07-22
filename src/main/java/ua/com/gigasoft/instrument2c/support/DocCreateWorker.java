@@ -3,7 +3,10 @@ package ua.com.gigasoft.instrument2c.support;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
+import ua.com.gigasoft.instrument2c.mainModel.Location;
+import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.DocModel;
 import ua.com.gigasoft.instrument2c.mainModel.ExDoc;
@@ -13,6 +16,7 @@ import ua.com.gigasoft.instrument2c.dao.BoxDAO;
 import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
 import ua.com.gigasoft.instrument2c.dao.DocDAO;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
+import ua.com.gigasoft.instrument2c.dao.LocationDAO;
 import ua.com.gigasoft.instrument2c.dao.StorageDAO;
 import ua.com.gigasoft.instrument2c.mainModel.ExDocCatalog;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
@@ -24,7 +28,31 @@ public class DocCreateWorker {
 	DocDAO docDAO;
 	BoxDAO boxDAO;
 	InstrumentDAO instDAO;
+	LocationDAO locDAO;
 
+	private  ExDocTempStore checkOutParam(ExDocWEB docW, int number, DocModel doc) {
+		String errorText = "";
+		try {
+			Optional<Location>  location = locDAO.getLocById(Long.parseLong(docW.getOutLocation()));
+			if (location.isPresent()) {
+				doc.setOutLocation(location.get());
+				Optional<Box> box = boxDAO.getBoxByID(docW.getOutBox());
+				if (box.isPresent()) {
+					doc.setOutBox(box.get());
+				} else {
+					errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅР°СЏ РІРёРґР°СЋС‰Р°СЏ СЏС‡РµР№РєР° РІ СЃС‚СЂРѕРєРµ " + number + "</li>";
+				}
+			} else {
+				errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ  РІРёРґР°С‡Рё РІ СЃС‚РѕРєРµ " + number + "</li>";
+			}
+		} catch (Exception e) {
+			errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РІРёРґР°С‡Рё РІ СЃС‚РѕРєРµ " + number + "</li>";
+		}
+
+		ExDocTempStore tempDoc = new ExDocTempStore(errorText, doc, 0);
+		return tempDoc;
+	}
+	
 	private String writeExDoc(DocModel doc, long catId, long outStorageId, DocType docType) {
 		try {
 
