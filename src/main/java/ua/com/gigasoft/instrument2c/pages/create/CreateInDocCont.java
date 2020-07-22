@@ -23,6 +23,7 @@ import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 
 @Controller
+@RequestMapping("/createInDoc")
 public class CreateInDocCont {
 
 	ExDocWEBList exDocWEBList;
@@ -32,7 +33,8 @@ public class CreateInDocCont {
 	@Autowired
 	private InstrumentDAO instDAO;
 
-	@GetMapping("/createInDoc")
+	//@GetMapping("/createInDoc")
+	@RequestMapping(method = RequestMethod.GET)
 	public String getInDocCF(Model model) {
 		ExDocWEB doc = new ExDocWEB();
 		 exDocWEBList = new ExDocWEBList();
@@ -64,9 +66,8 @@ public class CreateInDocCont {
 		return instrumentMap;
 	}
 	
-	@GetMapping("/createInDoc/addRow")
-	//@RequestMapping(method = RequestMethod.GET, params = { "addRow"})
-//	public String addRow (@RequestParam(name="addRow", required = true, defaultValue = "1") String name){
+	
+	@RequestMapping(method = RequestMethod.GET, params = { "addRow"})
 	public String addRow (Model model){
 		if (exDocWEBList != null) {
 		exDocWEBList.getDocList().add(new ExDocWEB());
@@ -74,7 +75,38 @@ public class CreateInDocCont {
 		System.out.println(exDocWEBList);
 		model.addAttribute("docListObject", exDocWEBList);
 		
-		//model.addObject("page", "indoc");
 		return "createInDoc";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, params = { "removeRow" })
+	public String docRemoveRow(@RequestParam("removeRow") String id, Model model) {
+		System.out.println(id);
+		int idInt = 0;
+		try {
+			idInt = Integer.parseInt(id);
+		} catch (Exception e) {
+			model.addAttribute("docListObject", exDocWEBList);
+			return "createInDoc";
+		}
+		if (exDocWEBList != null) {
+			if (exDocWEBList.getDocList().size() == 1) {
+				ExDocWEB doc = new ExDocWEB();
+				List<ExDocWEB> docList = new ArrayList<ExDocWEB>();
+				docList.add(doc);
+				exDocWEBList.setDocList(docList);
+			}
+			if (exDocWEBList.getDocList().size() > 1) {
+				if (idInt <= exDocWEBList.getDocList().size()) {
+					exDocWEBList.getDocList().remove(idInt);
+				}
+			}
+		}
+		
+		model.addAttribute("docListObject", exDocWEBList);
+		model.addAttribute("page", "indoc");
+		return "createInDoc";
+
+	}
+
+	
 }
