@@ -7,16 +7,15 @@ import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
 
 public interface DocCatalogDAO {
 
-	public boolean createExDocCatalog(DocCatalog DocCatalog);
-	public DocCatalog getExDocCatalogById(long id);
-	public List<DocCatalog> getExDocCatalogByDate(LocalDate date);
-	public List<DocCatalog> getExDocCatalogByNumber(int number);
-	public List<DocCatalog> getExDocCatalogByYear(int year);
+	public boolean createDocCatalog(DocCatalog DocCatalog);
+	public DocCatalog getDocCatalogById(long id);
+	public List<DocCatalog> getDocCatalogByDate(LocalDate date);
+	public List<DocCatalog> getDocCatalogByNumber(int number);
+	public List<DocCatalog> getDocCatalogByYear(int year);
 	public List<DocCatalog> getAllDoc();
-	public List<Integer> getExDocCatalogByYearN(int year);
-	public DocCatalog getExDocCatalogBySnumber(String numberString);
-	public boolean deleteExDocCatalogDoc(long id);
+	public List<Integer> getDocCatalogByYearN(int year);
+	public DocCatalog getDocCatalogBySnumber(String numberString);
+	public boolean deleteDocCatalogDoc(long id);
 	public boolean hasError();
-	public void closeConection();
 
 }
