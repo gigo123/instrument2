@@ -79,15 +79,8 @@ public class CreateInDocCont {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, params = { "removeRow" })
-	public String docRemoveRow(@RequestParam("removeRow") String id, Model model) {
-		System.out.println(id);
+	public String docRemoveRow(@RequestParam("removeRow") int id, Model model) {
 		int idInt = 0;
-		try {
-			idInt = Integer.parseInt(id);
-		} catch (Exception e) {
-			model.addAttribute("docListObject", exDocWEBList);
-			return "createInDoc";
-		}
 		if (exDocWEBList != null) {
 			if (exDocWEBList.getDocList().size() == 1) {
 				ExDocWEB doc = new ExDocWEB();
