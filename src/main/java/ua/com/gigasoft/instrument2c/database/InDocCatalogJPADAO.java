@@ -2,23 +2,25 @@ package ua.com.gigasoft.instrument2c.database;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
 import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
+import ua.com.gigasoft.instrument2c.mainModel.InDocCatalog;
 
 @Service
-public class DocCatalogJPADAO  implements DocCatalogDAO{
+public class InDocCatalogJPADAO  implements DocCatalogDAO{
 
 	@Autowired
-	private DocCatalogRepository docRepo;
+	private InDocCatalogRepository docRepo;
 	
 	
 	@Override
 	public boolean createDocCatalog(DocCatalog DocCatalog) {
-		docRepo.save(DocCatalog);
+		docRepo.save((InDocCatalog)DocCatalog);
 		return true;
 	}
 
@@ -48,7 +50,10 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 
 	@Override
 	public List<DocCatalog> getAllDoc() {
-		 return docRepo.findAll();
+		List<DocCatalog> docList =  docRepo.findAll().stream()
+				    .map(e -> (DocCatalog) e)
+				    .collect(Collectors.toList());
+		 return docList;
 	}
 
 	@Override
