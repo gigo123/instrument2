@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.PositiveOrZero;
 
-import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
 
 @Entity
 @Table(name = "box")  
