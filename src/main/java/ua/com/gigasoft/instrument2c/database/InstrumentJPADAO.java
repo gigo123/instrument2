@@ -65,4 +65,9 @@ public class InstrumentJPADAO implements InstrumentDAO{
 		
 	}
 
+	@Override
+	public Optional<Instrument> getInstrumentByid(long id) {
+		return instrumentRepo.findById(id);
+	}
+
 }
