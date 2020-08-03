@@ -1,14 +1,17 @@
 package ua.com.gigasoft.instrument2c.secondModel;
 
 
+import javax.validation.constraints.PositiveOrZero;
 
-import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumer;
-@AddBoxNumer()
+import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumerValidator;
+@AddBoxNumerValidator()
 public class BoxListLocation {
 	private String startNum;
 	private String endNum;
 	private String manyBox ="O";
 	private String locationWB;
+	@PositiveOrZero (message = "ячейка должна бить положительным числом")
+
 	private int number;
 
 	public String getManyBox() {
