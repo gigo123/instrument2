@@ -39,7 +39,6 @@ public class DocCatalogDBtest {
 		// then
 		assert (docCat2.size() == 1);
 		List<Integer> docCat3 = DCRepository.getDocCatByYearN(2020, DocType.INDOC);
-		System.out.println(docCat3);
 		assert (docCat3.size() == 1);
 	}
 
