@@ -47,14 +47,14 @@ public class DocCreateWorker {
 		String errString = errorText.toString();
 		if (errString.equals("<ul></ul>")) {
 			String error = writeDocCatolog(docType, docTempList.size(), calcTotalAmount(docTempList));
-			if (!error.equals("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>")) {
+			/*if (!error.equals("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>")) {
 				long catalogId = 0;
 				catalogId = docCatDAO.getDocCatalogBySnumber(error).getId();
 				for (ExDocTempStore exDocTempStore : docTempList) {
 					error += writeExDoc(exDocTempStore.getDoc(), catalogId, exDocTempStore.getOutStorageId(), docType);
 				}
 			}
-
+*/
 			return error;
 		} else {
 			return errString;
@@ -307,7 +307,7 @@ public class DocCreateWorker {
 		int year = date.getYear();
 		String numberString = null;
 
-		List<Integer> numberList = docCatDAO.getDocCatalogByYearN(year);
+		List<Integer> numberList = docCatDAO.getDocCatalogByYearN(year,docType);
 		Collections.sort(numberList);
 		int lastNumber;
 		if (numberList.size() == 0) {
