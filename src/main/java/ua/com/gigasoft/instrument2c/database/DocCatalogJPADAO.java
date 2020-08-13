@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
 import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
+import ua.com.gigasoft.instrument2c.secondModel.DocType;
 
 @Service
 public class DocCatalogJPADAO  implements DocCatalogDAO{
@@ -18,7 +19,7 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	
 	
 	@Override
-	public boolean createDocCatalog(DocCatalog DocCatalog) {
+	public boolean createDocCatalog(DocCatalog DocCatalog ) {
 		docRepo.save((DocCatalog)DocCatalog);
 		return true;
 	}
@@ -30,19 +31,19 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByDate(LocalDate date) {
+	public List<DocCatalog> getDocCatalogByDate(LocalDate date , DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByNumber(int number) {
+	public List<DocCatalog> getDocCatalogByNumber(int number ,DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByYear(int year) {
+	public List<DocCatalog> getDocCatalogByYear(int year, DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -56,13 +57,13 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	}
 
 	@Override
-	public List<Integer> getDocCatalogByYearN(int year) {
+	public List<Integer> getDocCatalogByYearN(int year ,DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DocCatalog getDocCatalogBySnumber(String numberString) {
+	public DocCatalog getDocCatalogBySnumber(String numberString ,DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -77,6 +78,12 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	public boolean hasError() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<DocCatalog> getAllDocByType(DocType docType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
