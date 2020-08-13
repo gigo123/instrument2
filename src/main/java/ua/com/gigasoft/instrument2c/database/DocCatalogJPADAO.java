@@ -59,6 +59,7 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	public List<Integer> getDocCatalogByYearN(int year ,DocType docType) {
 		
 		return docRepo.getDocCatByYearN(year, docType);
+		//return null;
 	}
 
 	@Override
