@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
 import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
-import ua.com.gigasoft.instrument2c.mainModel.InDocCatalog;
 
 @Service
 public class DocCatalogJPADAO  implements DocCatalogDAO{
@@ -20,7 +19,7 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	
 	@Override
 	public boolean createDocCatalog(DocCatalog DocCatalog) {
-		docRepo.save((InDocCatalog)DocCatalog);
+		docRepo.save((DocCatalog)DocCatalog);
 		return true;
 	}
 
