@@ -44,8 +44,7 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 
 	@Override
 	public List<DocCatalog> getDocCatalogByYear(int year, DocType docType) {
-		// TODO Auto-generated method stub
-		return null;
+		return docRepo.getDocCatByYear(year, docType);
 	}
 
 	@Override
@@ -58,8 +57,8 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 
 	@Override
 	public List<Integer> getDocCatalogByYearN(int year ,DocType docType) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return docRepo.getDocCatByYearN(year, docType);
 	}
 
 	@Override
