@@ -12,10 +12,10 @@ import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
 import ua.com.gigasoft.instrument2c.mainModel.InDocCatalog;
 
 @Service
-public class InDocCatalogJPADAO  implements DocCatalogDAO{
+public class DocCatalogJPADAO  implements DocCatalogDAO{
 
 	@Autowired
-	private InDocCatalogRepository docRepo;
+	private DocCatalogRepository docRepo;
 	
 	
 	@Override
