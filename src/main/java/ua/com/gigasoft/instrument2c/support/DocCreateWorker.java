@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 import ua.com.gigasoft.instrument2c.mainModel.Location;
-import ua.com.gigasoft.instrument2c.mainModel.OutDoc;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
 import ua.com.gigasoft.instrument2c.mainModel.DocModel;
-import ua.com.gigasoft.instrument2c.mainModel.ExDoc;
 import ua.com.gigasoft.instrument2c.mainModel.Instrument;
 import ua.com.gigasoft.instrument2c.mainModel.Storage;
 import ua.com.gigasoft.instrument2c.dao.BoxDAO;
@@ -22,7 +20,6 @@ import ua.com.gigasoft.instrument2c.dao.DocDAO;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
 import ua.com.gigasoft.instrument2c.dao.LocationDAO;
 import ua.com.gigasoft.instrument2c.dao.StorageDAO;
-import ua.com.gigasoft.instrument2c.mainModel.InDoc;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocTempStore;
 
@@ -47,14 +44,13 @@ public class DocCreateWorker {
 		String errString = errorText.toString();
 		if (errString.equals("<ul></ul>")) {
 			String error = writeDocCatolog(docType, docTempList.size(), calcTotalAmount(docTempList));
-			/*if (!error.equals("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>")) {
-				long catalogId = 0;
-				catalogId = docCatDAO.getDocCatalogBySnumber(error).getId();
-				for (ExDocTempStore exDocTempStore : docTempList) {
-					error += writeExDoc(exDocTempStore.getDoc(), catalogId, exDocTempStore.getOutStorageId(), docType);
-				}
-			}
-*/
+			/*
+			 * if (!error.equals("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>")) { long
+			 * catalogId = 0; catalogId = docCatDAO.getDocCatalogBySnumber(error).getId();
+			 * for (ExDocTempStore exDocTempStore : docTempList) { error +=
+			 * writeExDoc(exDocTempStore.getDoc(), catalogId,
+			 * exDocTempStore.getOutStorageId(), docType); } }
+			 */
 			return error;
 		} else {
 			return errString;
@@ -65,22 +61,21 @@ public class DocCreateWorker {
 	private ExDocTempStore makeExDoc(ExDocWEB docW, int number, DocType docType) {
 		String errorText = "";
 		number++;
-		DocModel doc = null;
+		DocModel doc = new DocModel();
+		doc.setDocType(docType);
 		ExDocTempStore tempDoc = null;
 		if (docType == DocType.EXDOC) {
-			doc = new ExDoc();
-			tempDoc = checkInParam(docW, number, (ExDoc) doc);
+
+			tempDoc = checkInParam(docW, number, doc);
 			errorText = tempDoc.getErrorString();
 			tempDoc = checkOutParam(docW, number, tempDoc.getDoc());
 			errorText += tempDoc.getErrorString();
 		}
 		if (docType == DocType.INDOC) {
-			doc = new InDoc();
 			tempDoc = checkOutParam(docW, number, doc);
 			errorText += tempDoc.getErrorString();
 		}
 		if (docType == DocType.OUTDOC) {
-			doc = new OutDoc();
 			tempDoc = checkOutParam(docW, number, doc);
 			errorText += tempDoc.getErrorString();
 		}
@@ -91,7 +86,7 @@ public class DocCreateWorker {
 				tempDoc.getDoc().setAmount(docW.getAmount());
 				errorText = tempDoc.getErrorString();
 				if (docType == DocType.EXDOC) {
-					errorText += checkBox((ExDoc) tempDoc.getDoc());
+					errorText += checkBox(tempDoc.getDoc());
 				}
 				tempDoc.setErrorString(errorText);
 				return tempDoc;
@@ -103,7 +98,7 @@ public class DocCreateWorker {
 		}
 	}
 
-	private String checkBox(ExDoc doc) {
+	private String checkBox(DocModel doc) {
 		long inID = doc.getInBox().getId();
 		long outId = doc.getOutBox().getId();
 		if (inID == outId) {
@@ -160,7 +155,7 @@ public class DocCreateWorker {
 		return tempDoc;
 	}
 
-	private ExDocTempStore checkInParam(ExDocWEB docW, int number, ExDoc doc) {
+	private ExDocTempStore checkInParam(ExDocWEB docW, int number, DocModel doc) {
 		String errorText = "";
 		try {
 			Optional<Location> location = locDAO.getLocById(Long.parseLong(docW.getOutLocation()));
@@ -215,11 +210,11 @@ public class DocCreateWorker {
 			Storage storage = null;
 			List<Storage> storeList = null;
 			float amount;
-			ExDoc exDoc = null;
+			DocModel exDoc = new DocModel();
+			exDoc.setDocType(docType);
 			if (docType == DocType.EXDOC || docType == DocType.INDOC) {
 
 				if (docType == DocType.EXDOC) {
-					exDoc = (ExDoc) doc;
 					storage = storageDAO.getStorageByID(outStorageId);
 					amount = storage.getAmount() - doc.getAmount();
 					if (amount <= 0.0) {
@@ -307,7 +302,7 @@ public class DocCreateWorker {
 		int year = date.getYear();
 		String numberString = null;
 
-		List<Integer> numberList = docCatDAO.getDocCatalogByYearN(year,docType);
+		List<Integer> numberList = docCatDAO.getDocCatalogByYearN(year, docType);
 		Collections.sort(numberList);
 		int lastNumber;
 		if (numberList.size() == 0) {
