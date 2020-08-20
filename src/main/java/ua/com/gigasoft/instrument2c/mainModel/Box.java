@@ -17,6 +17,7 @@ import javax.validation.constraints.PositiveOrZero;
 @Table(name = "box")  
 public class Box {
 	 @Id 
+	 @Column(name = "id")
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	 @ManyToOne(fetch=FetchType.LAZY, 
