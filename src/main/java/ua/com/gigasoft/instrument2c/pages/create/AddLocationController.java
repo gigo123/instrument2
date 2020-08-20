@@ -11,13 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 import ua.com.gigasoft.instrument2c.mainModel.Location;
-import ua.com.gigasoft.instrument2c.support.addPageWorker;
+import ua.com.gigasoft.instrument2c.support.AddLocationWorker;
+
 
 @Controller
 public class AddLocationController {
 
 	@Autowired
-	private  addPageWorker check;
+	private AddLocationWorker check;
 	
 	@GetMapping("/addlocation")
 	public String getAddLocCF(Model model) {
@@ -34,7 +35,7 @@ public class AddLocationController {
 			 System.out.println(result.getAllErrors());
 	            return "addLocation";
 	        }
-		check.addLocationWork(location);
+		check.addLocation(location);
 		return "operation";
 	}
 	

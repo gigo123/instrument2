@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import ua.com.gigasoft.instrument2c.mainModel.Instrument;
-import ua.com.gigasoft.instrument2c.support.addPageWorker;
+import ua.com.gigasoft.instrument2c.support.AddInsstrumentWorker;
 
 @Controller
 public class AddInstrumentComtroller {
 	@Autowired
-	private  addPageWorker check;
+	private  AddInsstrumentWorker check;
 	
 	@GetMapping("/addinstrument")
 	public String getAddInstrumentCF(Model model,Instrument instrument) {
@@ -30,7 +30,7 @@ public class AddInstrumentComtroller {
 			 System.out.println(bindingResult.getAllErrors());
 	            return "addInstrument";
 	        }
-		 check.addInstrumentWork(instrument);
+		 check.addInstrument(instrument);
 		 return "operation";
 	}
 

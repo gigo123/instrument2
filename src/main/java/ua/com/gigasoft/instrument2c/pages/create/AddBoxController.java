@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.BoxListLocation;
-import ua.com.gigasoft.instrument2c.support.addPageWorker;
+import ua.com.gigasoft.instrument2c.support.AddBoxWorker;
 
 @Controller
 public class AddBoxController {
@@ -25,7 +25,7 @@ public class AddBoxController {
 	private LocationJPADAO locDAO;
 	
 	@Autowired
-	private  addPageWorker check;
+	private  AddBoxWorker check;
 	
 	@GetMapping("/addBox")
 	public String getAddBoxCF(BoxListLocation boxList,Model model) {
@@ -40,7 +40,7 @@ public class AddBoxController {
 			 System.out.println(result.getAllErrors());
 	            return "addBox";
 	        }
-		 check.addBoxWork(boxList);
+		 check.addBox(boxList);
 		
 		 
 		return "operation";
