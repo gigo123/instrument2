@@ -3,6 +3,7 @@ package ua.com.gigasoft.instrument2c.support;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import ua.com.gigasoft.instrument2c.database.BoxJPADAO;
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
@@ -10,12 +11,14 @@ import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.BoxListLocation;
 
+
+@Component("addBoxS") 
 public class AddBoxWorker {
 	@Autowired
 	private LocationJPADAO locDAO;
 	@Autowired
 	private BoxJPADAO boxDAO;
-	
+
 	public String addBox(BoxListLocation box) {
 		Optional<Location> loc = locDAO.getLocById(box.getLocationWB());
 		Location location = loc.get();
@@ -25,7 +28,7 @@ public class AddBoxWorker {
 			boxDAO.createBox(newBox);
 
 		} else {
-			int start =box.getStartNum();
+			int start = box.getStartNum();
 			int end = box.getEndNum();
 			for (int i = start; i <= end; i++) {
 				Box tempBox = new Box();
