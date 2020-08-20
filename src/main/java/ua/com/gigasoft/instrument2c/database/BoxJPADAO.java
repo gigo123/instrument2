@@ -34,8 +34,7 @@ public class BoxJPADAO implements BoxDAO {
 
 	@Override
 	public List<Box> getAllBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return boxRepo.findAll();
 	}
 
 	@Override
