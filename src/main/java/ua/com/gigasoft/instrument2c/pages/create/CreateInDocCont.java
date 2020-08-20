@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
@@ -39,6 +40,7 @@ public class CreateInDocCont {
 	@RequestMapping(method = RequestMethod.GET)
 	public String getInDocCF(Model model) {
 		ExDocWEB doc = new ExDocWEB();
+		doc.setDocType(DocType.INDOC);
 		 exDocWEBList = new ExDocWEBList();
 		List<ExDocWEB> docList = new ArrayList<ExDocWEB>();
 		docList.add(doc);
@@ -72,7 +74,9 @@ public class CreateInDocCont {
 	@RequestMapping(method = RequestMethod.GET, params = { "addRow"})
 	public String addRow (Model model){
 		if (exDocWEBList != null) {
-		exDocWEBList.getDocList().add(new ExDocWEB());
+			ExDocWEB doc = new ExDocWEB();
+			doc.setDocType(DocType.INDOC);
+		exDocWEBList.getDocList().add(doc);
 		}
 		System.out.println(exDocWEBList);
 		model.addAttribute("docListObject", exDocWEBList);

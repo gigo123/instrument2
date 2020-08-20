@@ -20,6 +20,15 @@ public class ExDocWEB {
 	private String instrument;
 	@Positive(message = "количество должно быть положительним числом")
 	private float amount;
+private DocType docType;
+
+	public DocType getDocType() {
+	return docType;
+}
+
+public void setDocType(DocType docType) {
+	this.docType = docType;
+}
 
 	public long getId() {
 		return id;
