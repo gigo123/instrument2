@@ -4,56 +4,53 @@ package ua.com.gigasoft.instrument2c.secondModel;
 import javax.validation.constraints.PositiveOrZero;
 
 import ua.com.gigasoft.instrument2c.customValidator.AddBoxNumerValidator;
-@AddBoxNumerValidator()
-public class BoxListLocation {
-	private String startNum;
-	private String endNum;
-	private String manyBox ="O";
-	private String locationWB;
-	@PositiveOrZero (message = "ячейка должна бить положительным числом")
 
+public class BoxListLocation {
+	@PositiveOrZero (message = "ячейка должна бить положительным числом")
+	private int startNum =0;
+	@PositiveOrZero (message = "ячейка должна бить положительным числом")
+	private int endNum =0;
+	private String manyBox ="O";
+	private long locationWB;
+	
+	@PositiveOrZero (message = "ячейка должна бить положительным числом")
 	private int number;
 
-	public String getManyBox() {
-		return manyBox;
+	
+
+
+	public int getStartNum() {
+		return startNum;
 	}
 
-	@Override
-	public String toString() {
-		return "BoxListLocation [" + (startNum != null ? "startNum=" + startNum + ", " : "")
-				+ (endNum != null ? "endNum=" + endNum + ", " : "")
-				+ (manyBox != null ? "manyBox=" + manyBox + ", " : "")
-				+ (locationWB != null ? "locationWB=" + locationWB : "") + "]";
+	public void setStartNum(int startNum) {
+		this.startNum = startNum;
+	}
+
+	public int getEndNum() {
+		return endNum;
+	}
+
+	public void setEndNum(int endNum) {
+		this.endNum = endNum;
+	}
+
+	
+	public String getManyBox() {
+		return manyBox;
 	}
 
 	public void setManyBox(String manyBox) {
 		this.manyBox = manyBox;
 	}
 
-	public String getStartNum() {
-		return startNum;
-	}
-
-	public String getLocationWB() {
+	public long getLocationWB() {
 		return locationWB;
 	}
 
-	public void setLocationWB(String locationWB) {
+	public void setLocationWB(long locationWB) {
 		this.locationWB = locationWB;
 	}
-
-	public void setStartNum(String startNum) {
-		this.startNum = startNum;
-	}
-
-	public String getEndNum() {
-		return endNum;
-	}
-
-	public void setEndNum(String endNum) {
-		this.endNum = endNum;
-	}
-
 
 	public int getNumber() {
 		return number;

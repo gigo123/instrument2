@@ -38,8 +38,8 @@ public class addPageWorker {
 	}
 
 	public String addBoxWork(BoxListLocation box) {
-		long locId = Long.parseLong(box.getLocationWB());
-		Optional<Location> loc = locDAO.getLocById(locId);
+System.out.println(box.getLocationWB());
+		Optional<Location> loc = locDAO.getLocById(box.getLocationWB());
 		Location location = loc.get();
 		if (box.getManyBox().equals("O")) {
 
@@ -47,13 +47,14 @@ public class addPageWorker {
 			boxDAO.createBox(newBox);
 
 		} else {
-
-			int start = Integer.parseInt(box.getStartNum());
-			int end = Integer.parseInt(box.getEndNum());
+			int start =box.getStartNum();
+			int end = box.getEndNum();
 			end++;
-			Box tempBox = new Box();
-			tempBox.setLocation(location);
+			System.out.println(start);
+			System.out.println(end);
 			for (int i = start; i < end; i++) {
+				Box tempBox = new Box();
+				tempBox.setLocation(location);
 				tempBox.setNumber(i);
 				boxDAO.createBox(tempBox);
 			}
