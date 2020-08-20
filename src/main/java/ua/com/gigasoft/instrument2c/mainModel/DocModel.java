@@ -1,12 +1,60 @@
 package ua.com.gigasoft.instrument2c.mainModel;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.PositiveOrZero;
+
+import ua.com.gigasoft.instrument2c.secondModel.DocType;
+
+@Entity
+@Table(name = "doc") 
 public class DocModel {
+	 @Id 
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	 @OneToOne
 	private Location outLocation;
+	 @OneToOne
 	private Box outBox;
+	 @OneToOne
+	private Location inLocation;
+	 @OneToOne
+	private Box inBox;
+	 @OneToOne
 	private DocCatalog catalogId;
+	 @OneToOne
 	private Instrument instrument;
+	 @PositiveOrZero
 	private float amount;
+	 
+	private DocType docType;
+	
+	public DocType getDocType() {
+		return docType;
+	}
+	public void setDocType(DocType docType) {
+		this.docType = docType;
+	}
+	public Location getInLocation() {
+		return inLocation;
+	}
+	public void setInLocation(Location inLocation) {
+		this.inLocation = inLocation;
+	}
+	public Box getInBox() {
+		return inBox;
+	}
+	public void setInBox(Box inBox) {
+		this.inBox = inBox;
+	}
 	public long getId() {
 		return id;
 	}
@@ -43,18 +91,33 @@ public class DocModel {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-	@Override
-	public String toString() {
-		return "DocModel [id=" + id + ", outLocation=" + outLocation + ", outBox=" + outBox + ", catalogId=" + catalogId
-				+ ", instrument=" + instrument + ", amount=" + amount + "]";
+	
+
+
+	
+	public DocModel(Location outLocation, Box outBox, Location inLocation, Box inBox, DocCatalog catalogId,
+			Instrument instrument, float amount, DocType docType) {
+		super();
+		this.outLocation = outLocation;
+		this.outBox = outBox;
+		this.inLocation = inLocation;
+		this.inBox = inBox;
+		this.catalogId = catalogId;
+		this.instrument = instrument;
+		this.amount = amount;
+		this.docType = docType;
 	}
-	public DocModel(Location outLocation, Box outBox, DocCatalog catalogId, Instrument instrument, float amount) {
+	
+	
+	public DocModel(Location outLocation, Box outBox, DocCatalog catalogId, Instrument instrument, float amount,
+			DocType docType) {
 		super();
 		this.outLocation = outLocation;
 		this.outBox = outBox;
 		this.catalogId = catalogId;
 		this.instrument = instrument;
 		this.amount = amount;
+		this.docType = docType;
 	}
 	
 	public DocModel() {
