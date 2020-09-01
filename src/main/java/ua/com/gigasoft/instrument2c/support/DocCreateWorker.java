@@ -251,10 +251,10 @@ public class DocCreateWorker {
 					if (docType == DocType.EXDOC) {
 						Box box = doc.getOutBox();
 						List<Storage> tempStoreList = storageDAO.getStorageByBox(box.getId());
-						if (tempStoreList.size() == 0) {
-							box.setNotEmpty(true);
-							boxDAO.updateBox(box.getId(), box);
-						}
+						//if (tempStoreList.size() == 0) {
+						//	box.setNotEmpty(true);
+							//boxDAO.updateBox(box.getId(), box);
+						//}
 						Storage newInStorage = new Storage(exDoc.getInBox(), instrument, doc.getAmount());
 						storageDAO.createStorage(newInStorage);
 					}
@@ -275,10 +275,10 @@ public class DocCreateWorker {
 					storageDAO.deleteStorage(outStorageId);
 					Box box = doc.getOutBox();
 					List<Storage> tempStoreList = storageDAO.getStorageByBox(box.getId());
-					if (tempStoreList.size() == 0) {
-						box.setNotEmpty(false);
-						boxDAO.updateBox(box.getId(), box);
-					}
+					//if (tempStoreList.size() == 0) {
+					//	box.setNotEmpty(false);
+					//	boxDAO.updateBox(box.getId(), box);
+				//	}
 				} else {
 					storage.setAmount(amount);
 					storageDAO.updateStorage(outStorageId, storage);
