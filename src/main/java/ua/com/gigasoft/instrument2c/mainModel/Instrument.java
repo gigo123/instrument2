@@ -21,15 +21,9 @@ public class Instrument {
 	private String comment;
 	@NotEmpty(message = "заполнить ед изм")
 	private String measure;
-	private float totalNumber;
 	
 	
-	public float getTotalNumber() {
-		return totalNumber;
-	}
-	public void setTotalNumber(float totalNumber) {
-		this.totalNumber = totalNumber;
-	}
+	
 	public long getId() {
 		return id;
 	}
@@ -69,7 +63,7 @@ public class Instrument {
 	@Override
 	public String toString() {
 		return "Instrument [id=" + id + ", name=" + name + ", comment=" + comment + ", measure=" + measure
-				+ ", totalNumber=" + totalNumber + "]";
+				+ "]";
 	}
 	
 	

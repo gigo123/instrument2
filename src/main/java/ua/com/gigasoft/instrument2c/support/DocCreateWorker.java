@@ -263,9 +263,9 @@ public class DocCreateWorker {
 						storageDAO.createStorage(newInStorage);
 					}
 				}
-				float instumentNumber = instrument.getTotalNumber() + doc.getAmount();
-				instrument.setTotalNumber(instumentNumber);
-				instDAO.updateInstrument(instrument);
+			//	float instumentNumber = instrument.getTotalNumber() + doc.getAmount();
+			//	instrument.setTotalNumber(instumentNumber);
+			//	instDAO.updateInstrument(instrument);
 			}
 			if (docType == DocType.OUTDOC) {
 				doc.setCatalogId(docCatDAO.getDocCatalogById(catId));
@@ -284,9 +284,9 @@ public class DocCreateWorker {
 					storageDAO.updateStorage(outStorageId, storage);
 				}
 
-				float instumentNumber = doc.getInstrument().getTotalNumber() - doc.getAmount();
-				doc.getInstrument().setTotalNumber(instumentNumber);
-				instDAO.updateInstrument(doc.getInstrument());
+				//float instumentNumber = doc.getInstrument().getTotalNumber() - doc.getAmount();
+				//doc.getInstrument().setTotalNumber(instumentNumber);
+				//instDAO.updateInstrument(doc.getInstrument());
 			}
 			docDAO.createDoc(doc, docType);
 		} catch (Exception e) {
