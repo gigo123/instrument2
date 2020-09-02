@@ -1,21 +1,12 @@
 package ua.com.gigasoft.instrument2c.mainModel;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.PositiveOrZero;
 
-@Entity
-@Table(name = "doc") 
+@Embeddable
 public class DocumentRow {
-	 @Id 
-	 @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	 
 	 @ManyToOne(fetch=FetchType.LAZY)
 	private Box outBox;
 	 @ManyToOne(fetch=FetchType.LAZY)
@@ -32,12 +23,6 @@ public class DocumentRow {
 	}
 	public void setInBox(Box inBox) {
 		this.inBox = inBox;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	
 	public Box getOutBox() {

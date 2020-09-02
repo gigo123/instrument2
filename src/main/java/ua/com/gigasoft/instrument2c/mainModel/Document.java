@@ -1,16 +1,25 @@
 package ua.com.gigasoft.instrument2c.mainModel;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
-
 @Entity
 @Table(name = "Document")  
 public class Document {
@@ -24,6 +33,19 @@ public class Document {
 	private LocalDate date;
 	private int totalInstrum;
 	private float totalAmount;
+	@ElementCollection
+	private List<DocumentRow> rowsList= new ArrayList<DocumentRow>();
+	//@ElementCollection(targetClass=DocumentRow.class)
+//	@CollectionTable(name = "DOCROW")
+	//@OrderColumn
+	//@Column
+	//@OneToMany
+	public List<DocumentRow> getRowsList() {
+		return rowsList;
+	}
+	public void setRowsList(List<DocumentRow> rowsList) {
+		this.rowsList = rowsList;
+	}
 	private DocType docType; 
 	
 	public int getTotalInstrum() {
