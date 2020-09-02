@@ -22,7 +22,6 @@ public class Box {
 	private long id;
 	 @ManyToOne(fetch=FetchType.LAZY, 
      cascade=CascadeType.ALL)
-	 @JoinColumn (name="location")
 		private Location location;
 	@PositiveOrZero (message = "ячейка должна бить положительным числом")
 	private int number;
