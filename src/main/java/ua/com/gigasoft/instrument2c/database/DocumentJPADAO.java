@@ -44,7 +44,8 @@ public class DocumentJPADAO  implements DocumentDAO{
 
 	@Override
 	public List<Document> getDocumentByYear(int year, DocType docType) {
-		return docRepo.getDocCatByYear(year, docType);
+			return docRepo.getDocCatByYear(year, docType);
+		
 	}
 
 	@Override
@@ -59,7 +60,6 @@ public class DocumentJPADAO  implements DocumentDAO{
 	public List<Integer> getDocumentByYearN(int year ,DocType docType) {
 		
 		return docRepo.getDocCatByYearN(year, docType);
-		//return null;
 	}
 
 	@Override
