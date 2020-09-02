@@ -7,69 +7,69 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
-import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
+import ua.com.gigasoft.instrument2c.dao.DocumentDAO;
+import ua.com.gigasoft.instrument2c.mainModel.Document;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
 
 @Service
-public class DocCatalogJPADAO  implements DocCatalogDAO{
+public class DocumentJPADAO  implements DocumentDAO{
 
 	@Autowired
-	private DocCatalogRepository docRepo;
+	private DocumentRepository docRepo;
 	
 	
 	@Override
-	public boolean createDocCatalog(DocCatalog DocCatalog ) {
-		docRepo.save((DocCatalog)DocCatalog);
+	public boolean createDocument(Document Document ) {
+		docRepo.save((Document)Document);
 		return true;
 	}
 
 	@Override
-	public DocCatalog getDocCatalogById(long id) {
+	public Document getDocumentById(long id) {
 		docRepo.findById(id);
 		return null;
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByDate(LocalDate date , DocType docType) {
+	public List<Document> getDocumentByDate(LocalDate date , DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByNumber(int number ,DocType docType) {
+	public List<Document> getDocumentByNumber(int number ,DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<DocCatalog> getDocCatalogByYear(int year, DocType docType) {
+	public List<Document> getDocumentByYear(int year, DocType docType) {
 		return docRepo.getDocCatByYear(year, docType);
 	}
 
 	@Override
-	public List<DocCatalog> getAllDoc() {
-		List<DocCatalog> docList =  docRepo.findAll().stream()
-				    .map(e -> (DocCatalog) e)
+	public List<Document> getAllDoc() {
+		List<Document> docList =  docRepo.findAll().stream()
+				    .map(e -> (Document) e)
 				    .collect(Collectors.toList());
 		 return docList;
 	}
 
 	@Override
-	public List<Integer> getDocCatalogByYearN(int year ,DocType docType) {
+	public List<Integer> getDocumentByYearN(int year ,DocType docType) {
 		
 		return docRepo.getDocCatByYearN(year, docType);
 		//return null;
 	}
 
 	@Override
-	public DocCatalog getDocCatalogBySnumber(String numberString ,DocType docType) {
+	public Document getDocumentBySnumber(String numberString ,DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean deleteDocCatalogDoc(long id) {
+	public boolean deleteDocumentDoc(long id) {
 		docRepo.deleteById(id);
 		return false;
 	}
@@ -81,7 +81,7 @@ public class DocCatalogJPADAO  implements DocCatalogDAO{
 	}
 
 	@Override
-	public List<DocCatalog> getAllDocByType(DocType docType) {
+	public List<Document> getAllDocByType(DocType docType) {
 		// TODO Auto-generated method stub
 		return null;
 	}

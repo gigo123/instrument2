@@ -10,12 +10,12 @@ import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 import ua.com.gigasoft.instrument2c.mainModel.Box;
-import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
+import ua.com.gigasoft.instrument2c.mainModel.Document;
 import ua.com.gigasoft.instrument2c.mainModel.DocModel;
 import ua.com.gigasoft.instrument2c.mainModel.Instrument;
 import ua.com.gigasoft.instrument2c.mainModel.Storage;
 import ua.com.gigasoft.instrument2c.dao.BoxDAO;
-import ua.com.gigasoft.instrument2c.dao.DocCatalogDAO;
+import ua.com.gigasoft.instrument2c.dao.DocumentDAO;
 import ua.com.gigasoft.instrument2c.dao.DocDAO;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
 import ua.com.gigasoft.instrument2c.dao.LocationDAO;
@@ -24,7 +24,7 @@ import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocTempStore;
 
 public class DocCreateWorker {
-	DocCatalogDAO docCatDAO;
+	DocumentDAO docCatDAO;
 	StorageDAO storageDAO;
 	DocDAO docDAO;
 	BoxDAO boxDAO;
@@ -46,7 +46,7 @@ public class DocCreateWorker {
 			String error = writeDocCatolog(docType, docTempList.size(), calcTotalAmount(docTempList));
 			/*
 			 * if (!error.equals("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>")) { long
-			 * catalogId = 0; catalogId = docCatDAO.getDocCatalogBySnumber(error).getId();
+			 * catalogId = 0; catalogId = docCatDAO.getDocumentBySnumber(error).getId();
 			 * for (ExDocTempStore exDocTempStore : docTempList) { error +=
 			 * writeExDoc(exDocTempStore.getDoc(), catalogId,
 			 * exDocTempStore.getOutStorageId(), docType); } }
@@ -224,11 +224,11 @@ public class DocCreateWorker {
 						storageDAO.updateStorage(outStorageId, storage);
 					}
 					storeList = storageDAO.getStorageByBox(exDoc.getInBox().getId());
-					doc.setCatalogId(docCatDAO.getDocCatalogById(catId));
+				//	doc.setCatalogId(docCatDAO.getDocumentById(catId));
 				}
 				if (docType == DocType.INDOC) {
 					storeList = storageDAO.getStorageByBox(doc.getOutBox().getId());
-					doc.setCatalogId(docCatDAO.getDocCatalogById(catId));
+				//	doc.setCatalogId(docCatDAO.getDocumentById(catId));
 				}
 				Instrument instrument = doc.getInstrument();
 				boolean hasInstrument = false;
@@ -268,7 +268,7 @@ public class DocCreateWorker {
 			//	instDAO.updateInstrument(instrument);
 			}
 			if (docType == DocType.OUTDOC) {
-				doc.setCatalogId(docCatDAO.getDocCatalogById(catId));
+			//	doc.setCatalogId(docCatDAO.getDocumentById(catId));
 				storage = storageDAO.getStorageByID(outStorageId);
 				amount = storage.getAmount() - doc.getAmount();
 				if (amount <= 0.0) {
@@ -302,7 +302,7 @@ public class DocCreateWorker {
 		int year = date.getYear();
 		String numberString = null;
 
-		List<Integer> numberList = docCatDAO.getDocCatalogByYearN(year, docType);
+		List<Integer> numberList = docCatDAO.getDocumentByYearN(year, docType);
 		Collections.sort(numberList);
 		int lastNumber;
 		if (numberList.size() == 0) {
@@ -312,10 +312,10 @@ public class DocCreateWorker {
 			lastNumber++;
 		}
 		numberString = "" + year + "-" + lastNumber;
-		DocCatalog exCat = new DocCatalog(year, lastNumber, numberString, date, docType);
+		Document exCat = new Document(year, lastNumber, numberString, date, docType);
 		exCat.setTotalInstrum(tInstr);
 		exCat.setTotalAmount(tAmount);
-		if (!docCatDAO.createDocCatalog(exCat)) {
+		if (!docCatDAO.createDocument(exCat)) {
 			errorText.append("<li>РѕС€С‹Р±РєР° Р±Р°Р·Рё РґР°РЅРЅРёС… </li>");
 		}
 

@@ -7,13 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import ua.com.gigasoft.instrument2c.mainModel.DocCatalog;
+import ua.com.gigasoft.instrument2c.mainModel.Document;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
 @Repository
-public interface DocCatalogRepository extends JpaRepository<DocCatalog,Long> {
+public interface DocumentRepository extends JpaRepository<Document,Long> {
 
 	@Query("SELECT DC FROM DocCatalog  DC WHERE  DC.year = :year and DC.docType = :docType")
-	public List<DocCatalog> getDocCatByYear(@Param("year")int year, @Param("docType")DocType docType);
+	public List<Document> getDocCatByYear(@Param("year")int year, @Param("docType")DocType docType);
 	@Query("SELECT DC.number FROM DocCatalog  DC WHERE  DC.year = :year and DC.docType = :docType")
 	public List<Integer> getDocCatByYearN(@Param("year")int year, @Param("docType")DocType docType);
 }
