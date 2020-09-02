@@ -1,11 +1,12 @@
 package ua.com.gigasoft.instrument2c.secondModel;
 
-import ua.com.gigasoft.instrument2c.mainModel.DocModel;
+
+import ua.com.gigasoft.instrument2c.mainModel.DocumentRow;
 
 
 public class ExDocTempStore {
 	private String errorString;
-	private DocModel doc;
+	private DocumentRow docRow;
 	private long outStorageId;
 	
 	public long getOutStorageId() {
@@ -20,22 +21,22 @@ public class ExDocTempStore {
 	public void setErrorString(String errorString) {
 		this.errorString = errorString;
 	}
-	public DocModel getDoc() {
-		return doc;
+	public DocumentRow getDocRow() {
+		return docRow;
 	}
-	public void setDoc(DocModel doc) {
-		this.doc = doc;
+	public void setDocRow(DocumentRow doc) {
+		this.docRow = doc;
 	}
 	
 	@Override
 	public String toString() {
-		return "ExDocTempStore [errorString=" + errorString + ", doc=" + doc + ", outStorageId=" + outStorageId + "]";
+		return "ExDocTempStore [errorString=" + errorString + ", doc=" + docRow + ", outStorageId=" + outStorageId + "]";
 	}
 	
-	public ExDocTempStore(String errorString, DocModel doc, long outStorageId) {
+	public ExDocTempStore(String errorString, DocumentRow doc, long outStorageId) {
 		super();
 		this.errorString = errorString;
-		this.doc = doc;
+		this.docRow = doc;
 		this.outStorageId = outStorageId;
 	}
 	public ExDocTempStore() {

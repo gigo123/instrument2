@@ -5,7 +5,7 @@ public DaoFactory() {
 		
 	} 
 	public abstract BoxDAO getBoxDAO();
-	public abstract DocDAO getExDocDAO();
+	public abstract DocumentRowDAO getExDocDAO();
 	public abstract InstrumentDAO getInstrumentDAO();
 	public abstract LocationDAO getLocationDAO();
 	
