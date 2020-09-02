@@ -11,12 +11,11 @@ import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.Document;
-import ua.com.gigasoft.instrument2c.mainModel.DocModel;
+import ua.com.gigasoft.instrument2c.mainModel.DocumentRow;
 import ua.com.gigasoft.instrument2c.mainModel.Instrument;
 import ua.com.gigasoft.instrument2c.mainModel.Storage;
 import ua.com.gigasoft.instrument2c.dao.BoxDAO;
 import ua.com.gigasoft.instrument2c.dao.DocumentDAO;
-import ua.com.gigasoft.instrument2c.dao.DocDAO;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
 import ua.com.gigasoft.instrument2c.dao.LocationDAO;
 import ua.com.gigasoft.instrument2c.dao.StorageDAO;
@@ -24,9 +23,9 @@ import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocTempStore;
 
 public class DocCreateWorker {
-	DocumentDAO docCatDAO;
+	/*DocumentDAO docCatDAO;
 	StorageDAO storageDAO;
-	DocDAO docDAO;
+	DocumentRow docDAO;
 	BoxDAO boxDAO;
 	InstrumentDAO instDAO;
 	LocationDAO locDAO;
@@ -51,6 +50,7 @@ public class DocCreateWorker {
 			 * writeExDoc(exDocTempStore.getDoc(), catalogId,
 			 * exDocTempStore.getOutStorageId(), docType); } }
 			 */
+	/*
 			return error;
 		} else {
 			return errString;
@@ -61,7 +61,7 @@ public class DocCreateWorker {
 	private ExDocTempStore makeExDoc(ExDocWEB docW, int number, DocType docType) {
 		String errorText = "";
 		number++;
-		DocModel doc = new DocModel();
+		DocumentRow doc = new DocumentRow();
 		doc.setDocType(docType);
 		ExDocTempStore tempDoc = null;
 		if (docType == DocType.EXDOC) {
@@ -98,7 +98,7 @@ public class DocCreateWorker {
 		}
 	}
 
-	private String checkBox(DocModel doc) {
+	private String checkBox(DocumentRow doc) {
 		long inID = doc.getInBox().getId();
 		long outId = doc.getOutBox().getId();
 		if (inID == outId) {
@@ -108,7 +108,7 @@ public class DocCreateWorker {
 
 	}
 
-	private ExDocTempStore checkInstrument(ExDocWEB docW, int number, DocModel doc, DocType docType) {
+	private ExDocTempStore checkInstrument(ExDocWEB docW, int number, DocumentRow doc, DocType docType) {
 		StringBuilder errorText = new StringBuilder("");
 		Box box = doc.getOutBox();
 		long storageId = 0;
@@ -155,7 +155,7 @@ public class DocCreateWorker {
 		return tempDoc;
 	}
 
-	private ExDocTempStore checkInParam(ExDocWEB docW, int number, DocModel doc) {
+	private ExDocTempStore checkInParam(ExDocWEB docW, int number, DocumentRow doc) {
 		String errorText = "";
 		try {
 			Optional<Location> location = locDAO.getLocById(Long.parseLong(docW.getOutLocation()));
@@ -179,7 +179,7 @@ public class DocCreateWorker {
 		return tempDoc;
 	}
 
-	private ExDocTempStore checkOutParam(ExDocWEB docW, int number, DocModel doc) {
+	private ExDocTempStore checkOutParam(ExDocWEB docW, int number, DocumentRow doc) {
 		String errorText = "";
 		try {
 			Optional<Location> location = locDAO.getLocById(Long.parseLong(docW.getOutLocation()));
@@ -203,14 +203,14 @@ public class DocCreateWorker {
 		return tempDoc;
 	}
 
-	private String writeExDoc(DocModel doc, long catId, long outStorageId, DocType docType) {
+	private String writeExDoc(DocumentRow doc, long catId, long outStorageId, DocType docType) {
 		try {
 
 			long inStorageId = 0;
 			Storage storage = null;
 			List<Storage> storeList = null;
 			float amount;
-			DocModel exDoc = new DocModel();
+			DocumentRow exDoc = new DocumentRow();
 			exDoc.setDocType(docType);
 			if (docType == DocType.EXDOC || docType == DocType.INDOC) {
 
@@ -336,4 +336,5 @@ public class DocCreateWorker {
 		return tAmount;
 
 	}
+	*/
 }
