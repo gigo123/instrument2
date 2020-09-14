@@ -15,4 +15,5 @@ public @interface AddLocationValidator {
 	   String message() default "номер занят";
 	    Class<?>[] groups() default {};
 	    Class<? extends Payload>[] payload() default {};
+	    Class<? extends AddLocationCheckService> service();
 }
