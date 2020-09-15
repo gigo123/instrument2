@@ -43,13 +43,15 @@
 						</select>
 					</div>
 					<div class="col-2">
-						<input th:path="*{docList[__${iter.index}__].amount}"
-							id="amount-${iter.index}" class="form__input" required="true" />
+						<input  type ="number" th:field="*{docList[__${iter.index}__].amount}"
+							id="amount-${iter.index}" class="form__input" required />
+							<span th:if="${#fields.hasErrors('docList[__${iter.index}__].amount')}" th:errors="*{docList[__${iter.index}__].amount}">error</span>
 					</div>
 					<div class="col-1">
 						<input type="button" value="remove"
 							th:onclick="removeRow([[${iter.index}]])">
 					</div>
+					<span th:if="${#fields.hasErrors('docList[__${iter.index}__]')}" th:errors="*{docList[__${iter.index}__]}">error</span>
 				</div>
 <input type="submit" value="создать документ" class="btn btn-size-md" />
 		<input class="btn btn-size-md" id="searchInstrument" value="add row"
@@ -57,7 +59,7 @@
 		</form>
 		<script>
 		function searchOutBox(id) {
-			alert("docList" + id + ".outLocation");
+			//alert("docList" + id + ".outLocation");
 	var list=  document.getElementById("doc" + id + "inLocation");
 	var search = {};
 	search["boxId"] = list.options[list.selectedIndex].value;
