@@ -29,22 +29,21 @@ public class CreateInDocCont {
 
 	private ExDocWEBList exDocWEBList;
 
-
 	@Autowired
 	private LocationJPADAO locDAO;
 	@Autowired
 	private InstrumentDAO instDAO;
 
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getInDocCF(Model model) {
-		ExDocWEB doc = new ExDocWEB();
-		doc.setDocType(DocType.INDOC);
-		 exDocWEBList = new ExDocWEBList();
-		List<ExDocWEB> docList = new ArrayList<ExDocWEB>();
-		docList.add(doc);
-		exDocWEBList.setDocList(docList);
-		
+		if (exDocWEBList == null) {
+			ExDocWEB doc = new ExDocWEB();
+			doc.setDocType(DocType.INDOC);
+			exDocWEBList = new ExDocWEBList();
+			List<ExDocWEB> docList = new ArrayList<ExDocWEB>();
+			docList.add(doc);
+			exDocWEBList.setDocList(docList);
+		}
 		model.addAttribute("docListObject", exDocWEBList);
 		return "createInDoc";
 	}
@@ -69,21 +68,20 @@ public class CreateInDocCont {
 		}
 		return instrumentMap;
 	}
-	
-	
-	@RequestMapping(method = RequestMethod.GET, params = { "addRow"})
-	public String addRow (Model model){
+
+	@RequestMapping(method = RequestMethod.GET, params = { "addRow" })
+	public String addRow(Model model) {
 		if (exDocWEBList != null) {
 			ExDocWEB doc = new ExDocWEB();
 			doc.setDocType(DocType.INDOC);
-		exDocWEBList.getDocList().add(doc);
+			exDocWEBList.getDocList().add(doc);
 		}
 		System.out.println(exDocWEBList);
 		model.addAttribute("docListObject", exDocWEBList);
-		
+
 		return "createInDoc";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, params = { "removeRow" })
 	public String docRemoveRow(@RequestParam("removeRow") int id, Model model) {
 		int idInt = 0;
@@ -100,26 +98,24 @@ public class CreateInDocCont {
 				}
 			}
 		}
-		
+
 		model.addAttribute("docListObject", exDocWEBList);
 		model.addAttribute("page", "indoc");
 		return "createInDoc";
 
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String postBoxCF(@ModelAttribute("exDocWEBList") @Validated ExDocWEBList exDocWEBList,
 			BindingResult bindingResult, Model model) {
-		
+		System.out.println("post method");
 		if (bindingResult.hasErrors()) {
-			return "CreateInDoc";
+			return "operation";
 		}
 		String message;
-		//message=ControllersCheckWDoc.createExDocUnwrap(exDocWEBList, DocType.INDOC);
-		//model.addAttribute("errorText",message);
-		return "OperationInfo";
+		// message=ControllersCheckWDoc.createExDocUnwrap(exDocWEBList, DocType.INDOC);
+		// model.addAttribute("errorText",message);
+		return "operation";
 	}
 
-
-	
 }

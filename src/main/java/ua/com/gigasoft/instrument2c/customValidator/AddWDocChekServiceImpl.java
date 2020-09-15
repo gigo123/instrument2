@@ -1,7 +1,9 @@
 package ua.com.gigasoft.instrument2c.customValidator;
 
-import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
+import org.springframework.stereotype.Component;
 
+import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
+@Component
 public class AddWDocChekServiceImpl  implements AddWDocChekService{
 
 	@Override

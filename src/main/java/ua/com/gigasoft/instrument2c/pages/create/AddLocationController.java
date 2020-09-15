@@ -37,7 +37,6 @@ public class AddLocationController {
 			 System.out.println(result.getAllErrors());
 	            return "addLocation";
 	        }
-	//	 AddLocationWorker check =new AddLocationWorker();
 		check.addLocation(location);
 		return "operation";
 	}

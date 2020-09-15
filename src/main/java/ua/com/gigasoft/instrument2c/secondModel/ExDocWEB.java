@@ -5,7 +5,12 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 
 import org.springframework.stereotype.Component;
+
+import ua.com.gigasoft.instrument2c.customValidator.AddInstrumentCheckServiceIml;
+import ua.com.gigasoft.instrument2c.customValidator.AddWDocChekServiceImpl;
+import ua.com.gigasoft.instrument2c.customValidator.AddWDocValidator;
 @Component
+@AddWDocValidator(service = AddWDocChekServiceImpl.class)
 public class ExDocWEB {
 	private long id;
 	@NotEmpty
