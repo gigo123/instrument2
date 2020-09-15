@@ -15,5 +15,5 @@ public @interface AddInstrumentValidator {
 	String message() default "инструмент существует";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-
+    Class<? extends AddInstrumentCheckService> service();
 }

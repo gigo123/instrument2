@@ -8,9 +8,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import ua.com.gigasoft.instrument2c.customValidator.AddInstrumentCheckServiceIml;
 import ua.com.gigasoft.instrument2c.customValidator.AddInstrumentValidator;
 @Entity
-@AddInstrumentValidator
+@AddInstrumentValidator(service = AddInstrumentCheckServiceIml.class )
 @Table(name = "instrument")  
 public class Instrument {
 	 @Id 
