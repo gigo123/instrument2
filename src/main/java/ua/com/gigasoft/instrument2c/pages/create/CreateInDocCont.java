@@ -10,33 +10,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import ua.com.gigasoft.instrument2c.secondModel.DocType;
-import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.dao.InstrumentDAO;
 import ua.com.gigasoft.instrument2c.database.LocationJPADAO;
 import ua.com.gigasoft.instrument2c.mainModel.Instrument;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
+import ua.com.gigasoft.instrument2c.secondModel.DocType;
+import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 
 @Controller
 @RequestMapping("/createInDoc")
 public class CreateInDocCont {
 
-	ExDocWEBList exDocWEBList;
+	private ExDocWEBList exDocWEBList;
+
 
 	@Autowired
 	private LocationJPADAO locDAO;
 	@Autowired
 	private InstrumentDAO instDAO;
 
-	//@GetMapping("/createInDoc")
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getInDocCF(Model model) {
 		ExDocWEB doc = new ExDocWEB();
@@ -45,6 +44,7 @@ public class CreateInDocCont {
 		List<ExDocWEB> docList = new ArrayList<ExDocWEB>();
 		docList.add(doc);
 		exDocWEBList.setDocList(docList);
+		
 		model.addAttribute("docListObject", exDocWEBList);
 		return "createInDoc";
 	}
