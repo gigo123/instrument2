@@ -20,15 +20,11 @@ public class AddLocationVC implements ConstraintValidator<AddLocationValidator, 
 
 	private AddLocationCheckService service;
 
-	// private String fieldName;
 	@Override
 	public void initialize(AddLocationValidator constraint) {
 		Class<? extends AddLocationCheckService> clazz = constraint.service();
-		// this.fieldName = constraint.fieldName();
-		System.out.println("init");
 		try {
 			this.service = this.applicationContext.getBean(clazz);
-			System.out.println(service);
 		} catch (Exception ex) {
 			// Cant't initialize service which extends UniqueUsernameValidator
 			System.out.println(ex);
@@ -39,11 +35,9 @@ public class AddLocationVC implements ConstraintValidator<AddLocationValidator, 
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		context.disableDefaultConstraintViolation();
 		if (this.service != null) {
-
 			if (service.checkName(value)) {
 				return true;
 			} else {
-
 				context.buildConstraintViolationWithTemplate("место храненя существует").addConstraintViolation();
 				System.out.println("false");
 				return false;
