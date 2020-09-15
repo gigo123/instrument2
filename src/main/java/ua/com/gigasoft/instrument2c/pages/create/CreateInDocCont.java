@@ -110,7 +110,9 @@ public class CreateInDocCont {
 			BindingResult bindingResult, Model model) {
 		System.out.println("post method");
 		if (bindingResult.hasErrors()) {
-			return "operation";
+			 System.out.println(bindingResult.getAllErrors());
+			model.addAttribute("docListObject", exDocWEBList);
+			return "createInDoc";
 		}
 		String message;
 		// message=ControllersCheckWDoc.createExDocUnwrap(exDocWEBList, DocType.INDOC);
