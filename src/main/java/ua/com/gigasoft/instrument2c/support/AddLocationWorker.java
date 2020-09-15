@@ -18,7 +18,7 @@ public class AddLocationWorker {
 	private LocationJPADAO locDAO;
 	public void addLocation(Location location) {
 
-		locDAO.createLocation(location);
+		location = locDAO.createLocation(location);
 		if (location.isBoxes() == false) {
 			Box box = new Box(0, location);
 			boxDAO.createBox(box);

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 public interface LocationDAO {
-	public  void createLocation(Location location);
+	public  Location createLocation(Location location);
 	public Optional<Location> getLocById(long id);
 	public Optional<Location> getLocByName(String name);
 	public List<Location> getAllLocatin();

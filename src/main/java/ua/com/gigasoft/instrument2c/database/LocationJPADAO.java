@@ -15,8 +15,8 @@ public class LocationJPADAO implements LocationDAO {
 	@Autowired
     private LocationRepository locationRepo;
 	@Override
-	public void createLocation(Location location) {
-		locationRepo.save(location);
+	public Location createLocation(Location location) {
+		return locationRepo.save(location);
 	}
 
 	@Override
