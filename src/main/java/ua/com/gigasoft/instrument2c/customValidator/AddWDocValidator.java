@@ -10,9 +10,10 @@ import javax.validation.Payload;
 
 @Target ({ElementType.TYPE , ElementType.FIELD})
 @Retention (RetentionPolicy.RUNTIME)
-@Constraint (validatedBy = AddDocVC.class)
-public @interface AddDocValidator {
+@Constraint (validatedBy = AddWDocVC.class)
+public @interface AddWDocValidator {
 	String message() default "номер занят";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+    Class<? extends AddWDocChekService> service();
 }
