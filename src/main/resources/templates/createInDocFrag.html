@@ -17,6 +17,7 @@
 				<div class="row mb--20" th:each="doc,iter : ${docListObject.docList}">
 					<div class="col-1">
 						<span th:text="${iter.index}+1"></span>
+						<input th:field="*{docList[__${iter.index}__].docType}" type="text" th:value="INDOC" hidden="hidden"/>
 					</div>
 					<div class="col-2">
 						<select class="form-control selectpicker"
@@ -29,8 +30,8 @@
 					</div>
 					<div class="col-2">
 						<select class="form-control selectpicker"
-							th:field="*{docList[__${iter.index}__].outBox}"
-							th:id="'docList' + ${iter.index} +'outBox'">
+							th:field="*{docList[__${iter.index}__].inBox}"
+							th:id="'docList' + ${iter.index} +'inBox'">
 						</select>
 					</div>
 					<div class="col-3">
@@ -74,7 +75,7 @@
 			console.log("SUCCESS: ", data);
 			//display(data);
 			var boxmap = new Map(Object.entries(data.boxListId))
-			var select = document.getElementById("docList" + id +"outBox");
+			var select = document.getElementById("docList" + id +"inBox");
 			select.options.length=0;
 			for (var [key, value] of boxmap) {
 				console.log(key + ' = ' + value);
