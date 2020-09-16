@@ -14,8 +14,6 @@ import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
-import ua.com.gigasoft.instrument2c.support.DocRowCheckWorker;
-import ua.com.gigasoft.instrument2c.support.InDocRowCheck;
 
 @Component
 public class AddWDocChekServiceImpl implements AddWDocChekService {
@@ -28,19 +26,38 @@ public class AddWDocChekServiceImpl implements AddWDocChekService {
 
 	@Override
 	public boolean checkRow(ExDocWEB docRow, ConstraintValidatorContext context) {
-		System.out.println("Hello from  roe validaror");
-		
-		DocRowCheckWorker worker= null;
+		boolean checkRow = true;
+		//DocRowCheckWorker worker= null;
 		// checkInParam
-		System.out.println(docRow.getDocType());
 		if (docRow.getDocType() == DocType.INDOC) {
-			worker = new InDocRowCheck();
-		}
-		System.out.println(worker);
-		if(worker==null) {
-			return false;
-		}
-		return worker.chekRow(docRow, context);
 
+			System.out.println("start check");
+			try {
+				System.out.println(locDAO);
+							Optional<Location> location = locDAO.getLocById(Long.parseLong(docRow.getInLocation()));
+							System.out.println(location);
+							if (location.isPresent()) {
+								// docRow.setOutLocation(location.get().);
+								Optional<Box> box = boxDAO.getBoxByID(docRow.getInBox());
+								if (!box.isPresent()) {
+									checkRow = false;
+								}
+								System.out.println("doc i ok");
+							} else {
+								// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
+								// СЃС‚РѕРєРµ " ;
+								checkRow = false;
+								System.out.println("doc i not ok");
+							}
+				
+
+						} catch (Exception e) {
+							// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
+							// СЃС‚РѕРєРµ " ;
+							checkRow = false;
+							System.out.println("error");
+						}
+		}
+		return checkRow;
 	}
 }

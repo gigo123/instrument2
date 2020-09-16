@@ -5,12 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,18 +28,19 @@ import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEBList;
 
 @Controller
-@RequestMapping("/createInDoc")
+//@RequestMapping("/createInDoc")
 public class CreateInDocCont {
 
-	private ExDocWEBList exDocWEBList;
+	//private ExDocWEBList exDocWEBList;
 
 	@Autowired
 	private LocationJPADAO locDAO;
 	@Autowired
 	private InstrumentDAO instDAO;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping("/createInDoc")
 	public String getInDocCF(Model model) {
+		ExDocWEBList exDocWEBList = (ExDocWEBList) model.getAttribute("ExDocWEBList");
 		if (exDocWEBList == null) {
 			ExDocWEB doc = new ExDocWEB();
 			doc.setDocType(DocType.INDOC);
@@ -44,7 +49,7 @@ public class CreateInDocCont {
 			docList.add(doc);
 			exDocWEBList.setDocList(docList);
 		}
-		model.addAttribute("docListObject", exDocWEBList);
+		model.addAttribute("ExDocWEBList", exDocWEBList);
 		return "createInDoc";
 	}
 
@@ -71,19 +76,21 @@ public class CreateInDocCont {
 
 	@RequestMapping(method = RequestMethod.GET, params = { "addRow" })
 	public String addRow(Model model) {
+		ExDocWEBList exDocWEBList = (ExDocWEBList) model.getAttribute("ExDocWEBList");
 		if (exDocWEBList != null) {
 			ExDocWEB doc = new ExDocWEB();
 			doc.setDocType(DocType.INDOC);
 			exDocWEBList.getDocList().add(doc);
 		}
 		System.out.println(exDocWEBList);
-		model.addAttribute("docListObject", exDocWEBList);
+		model.addAttribute("ExDocWEBList", exDocWEBList);
 
 		return "createInDoc";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, params = { "removeRow" })
 	public String docRemoveRow(@RequestParam("removeRow") int id, Model model) {
+		ExDocWEBList exDocWEBList = (ExDocWEBList) model.getAttribute("ExDocWEBList");
 		int idInt = 0;
 		if (exDocWEBList != null) {
 			if (exDocWEBList.getDocList().size() == 1) {
@@ -99,19 +106,19 @@ public class CreateInDocCont {
 			}
 		}
 
-		model.addAttribute("docListObject", exDocWEBList);
+		model.addAttribute("ExDocWEBList", exDocWEBList);
 		model.addAttribute("page", "indoc");
 		return "createInDoc";
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String postBoxCF(@ModelAttribute("exDocWEBList") @Validated ExDocWEBList exDocWEBList,
+	@PostMapping("/createInDoc")
+	public String postBoxCF(@Validated @Valid ExDocWEBList exDocWEBList,
 			BindingResult bindingResult, Model model) {
-		System.out.println("post method");
+		System.out.println(model.getAttribute("ExDocWEBList"));
 		if (bindingResult.hasErrors()) {
 			 System.out.println(bindingResult.getAllErrors());
-			model.addAttribute("docListObject", exDocWEBList);
+			model.addAttribute("ExDocWEBList", exDocWEBList);
 			return "createInDoc";
 		}
 		String message;

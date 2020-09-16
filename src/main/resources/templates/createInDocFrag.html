@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <body>
 	<div th:fragment="mainPart">
-		<form action="#" th:action="@{/createInDoc}" th:object="${docListObject}"
-			method="post">
+		<form action="#" th:action="@{/createInDoc}"
+			th:object="${ExDocWEBList}" method="post">
 			<div class="row mb--20">
 				<div class="col-1">номер</div>
 				<div class="col-2">место приема</div>
@@ -14,15 +14,18 @@
 				<div class="col-2">количество</div>
 				<div class="col-1">удалить</div>
 			</div>
-				<div class="row mb--20" th:each="doc,iter : ${docListObject.docList}">
+			
+				<div  th:each="doc,iter : ${ExDocWEBList.docList}" class="row mb--20">
 					<div class="col-1">
-						<span th:text="${iter.index}+1"></span>
-						<input th:field="*{docList[__${iter.index}__].docType}" type="text" th:value="INDOC" hidden="hidden"/>
+						<span th:text="${iter.index}+1"></span> <input
+							th:field="*{docList[__${iter.index}__].docType}" type="text"
+							th:value="INDOC" hidden="hidden" />
 					</div>
 					<div class="col-2">
 						<select class="form-control selectpicker"
 							th:field="*{docList[__${iter.index}__].inLocation}"
-							th:onchange="'searchOutBox('+${iter.index}+')'" th:id="'doc'+${iter.index}+'inLocation'">
+							th:onchange="'searchOutBox('+${iter.index}+')'"
+							th:id="'doc'+${iter.index}+'inLocation'">
 							<option th:each="entry : ${locationList.entrySet()}"
 								th:value="${entry.key}" th:text="${entry.value}">This
 								will be replaced - is only used for natural templating</option>
@@ -44,19 +47,28 @@
 						</select>
 					</div>
 					<div class="col-2">
-						<input  type ="number" th:field="*{docList[__${iter.index}__].amount}"
-							id="amount-${iter.index}" class="form__input" required />
-							<span th:if="${#fields.hasErrors('docList[__${iter.index}__].amount')}" th:errors="*{docList[__${iter.index}__].amount}">error</span>
+						<input type="number"
+							th:field="*{docList[__${iter.index}__].amount}"
+							id="amount-${iter.index}" class="form__input" required /> <span
+							th:if="${#fields.hasErrors('docList[__${iter.index}__].amount')}"
+							th:errors="*{docList[__${iter.index}__].amount}">error</span>
 					</div>
 					<div class="col-1">
 						<input type="button" value="remove"
 							th:onclick="removeRow([[${iter.index}]])">
 					</div>
-					<span th:if="${#fields.hasErrors('docList[__${iter.index}__]')}" th:errors="*{docList[__${iter.index}__]}">error</span>
+
+
+
 				</div>
-<input type="submit" value="создать документ" class="btn btn-size-md" />
-		<input class="btn btn-size-md" id="searchInstrument" value="add row"
-			onclick="addRow()" />
+	
+			<input type="submit" value="создать документ" class="btn btn-size-md" />
+			<input class="btn btn-size-md" id="searchInstrument" value="add row"
+				onclick="addRow()" />
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
+					is incorrect</li>
+			</ul>
 		</form>
 		<script>
 		function searchOutBox(id) {

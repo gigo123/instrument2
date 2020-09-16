@@ -33,7 +33,6 @@ public class AddWDocVC implements ConstraintValidator<AddWDocValidator, ExDocWEB
 				return true;
 			} else {
 				//context.buildConstraintViolationWithTemplate("место храненя существует").addConstraintViolation();
-				System.out.println("false");
 				return false;
 			}
 		}
