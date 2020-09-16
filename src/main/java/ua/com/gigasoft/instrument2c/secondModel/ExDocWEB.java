@@ -13,11 +13,11 @@ import ua.com.gigasoft.instrument2c.customValidator.AddWDocValidator;
 @AddWDocValidator(service = AddWDocChekServiceImpl.class)
 public class ExDocWEB {
 	private long id;
-	@NotEmpty
+	//@NotEmpty
 	private String outLocation;
 	// @NotEmpty
 	private String inLocation;
-	@PositiveOrZero(message = "ячейка должна быть положительним числом")
+	//@PositiveOrZero(message = "ячейка должна быть положительним числом")
 	private int outBox;
 	// @PositiveOrZero(message = "ячейка должна быть положительним числом")
 	private int inBox;
@@ -25,7 +25,7 @@ public class ExDocWEB {
 	private String instrument;
 	@Positive(message = "количество должно быть положительним числом")
 	private float amount;
-private DocType docType;
+	private DocType docType;
 
 	public DocType getDocType() {
 	return docType;
@@ -108,7 +108,8 @@ public void setDocType(DocType docType) {
 	@Override
 	public String toString() {
 		return "ExDocWEB [id=" + id + ", outLocation=" + outLocation + ", inLocation=" + inLocation + ", outBox="
-				+ outBox + ", inBox=" + inBox + ", instrument=" + instrument + ", amount=" + amount + "]";
+				+ outBox + ", inBox=" + inBox + ", instrument=" + instrument + ", amount=" + amount + ", docType="
+				+ docType + "]";
 	}
 
 }

@@ -29,7 +29,7 @@ public class AddWDocVC implements ConstraintValidator<AddWDocValidator, ExDocWEB
 	@Override
 	public boolean isValid(ExDocWEB value, ConstraintValidatorContext context) {
 		if (this.service != null) {
-			if (service.checkRow(value)) {
+			if (service.checkRow(value,context)) {
 				return true;
 			} else {
 				//context.buildConstraintViolationWithTemplate("место храненя существует").addConstraintViolation();

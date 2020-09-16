@@ -2,6 +2,8 @@ package ua.com.gigasoft.instrument2c.customValidator;
 
 import java.util.Optional;
 
+import javax.validation.ConstraintValidatorContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,8 @@ import ua.com.gigasoft.instrument2c.mainModel.Box;
 import ua.com.gigasoft.instrument2c.mainModel.Location;
 import ua.com.gigasoft.instrument2c.secondModel.DocType;
 import ua.com.gigasoft.instrument2c.secondModel.ExDocWEB;
+import ua.com.gigasoft.instrument2c.support.DocRowCheckWorker;
+import ua.com.gigasoft.instrument2c.support.InDocRowCheck;
 
 @Component
 public class AddWDocChekServiceImpl implements AddWDocChekService {
@@ -23,33 +27,20 @@ public class AddWDocChekServiceImpl implements AddWDocChekService {
 	LocationDAO locDAO;
 
 	@Override
-	public boolean checkRow(ExDocWEB docRow) {
+	public boolean checkRow(ExDocWEB docRow, ConstraintValidatorContext context) {
 		System.out.println("Hello from  roe validaror");
-		boolean checkRow = true;
+		
+		DocRowCheckWorker worker= null;
 		// checkInParam
-		try {
-if(docRow.getDocType()==DocType.OUTDOC) {
-			Optional<Location> location = locDAO.getLocById(Long.parseLong(docRow.getOutLocation()));
-			if (location.isPresent()) {
-				// docRow.setOutLocation(location.get().);
-				Optional<Box> box = boxDAO.getBoxByID(docRow.getInBox());
-				if (!box.isPresent()) {
-					checkRow = false;
-				}
-			} else {
-				// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
-				// СЃС‚РѕРєРµ " ;
-				checkRow = false;
-			}
-}
-			//checkInstrument
-
-		} catch (Exception e) {
-			// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
-			// СЃС‚РѕРєРµ " ;
-			checkRow = false;
+		System.out.println(docRow.getDocType());
+		if (docRow.getDocType() == DocType.INDOC) {
+			worker = new InDocRowCheck();
 		}
-		return checkRow;
-	}
+		System.out.println(worker);
+		if(worker==null) {
+			return false;
+		}
+		return worker.chekRow(docRow, context);
 
+	}
 }
