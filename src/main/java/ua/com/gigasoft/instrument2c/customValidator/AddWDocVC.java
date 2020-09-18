@@ -32,7 +32,9 @@ public class AddWDocVC implements ConstraintValidator<AddWDocValidator, ExDocWEB
 			if (service.checkRow(value,context)) {
 				return true;
 			} else {
-				//context.buildConstraintViolationWithTemplate("место храненя существует").addConstraintViolation();
+			//	context.buildConstraintViolationWithTemplate("место храненя существует").addPropertyNode("amount").addConstraintViolation();
+				//context.buildConstraintViolationWithTemplate("инструмент существует")
+				//		.addPropertyNode("name").addConstraintViolation();
 				return false;
 			}
 		}

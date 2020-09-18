@@ -42,22 +42,19 @@ public class AddWDocChekServiceImpl implements AddWDocChekService {
 								if (!box.isPresent()) {
 									checkRow = false;
 								}
-								System.out.println("doc i ok");
 							} else {
 								// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
 								// СЃС‚РѕРєРµ " ;
 								checkRow = false;
-								System.out.println("doc i not ok");
+							
 							}
-				
-
 						} catch (Exception e) {
 							// errorText = "<li>РЅРµРїСЂР°РІРёР»СЊРЅРѕРµ РјРµСЃС‚Рѕ РїСЂРёРµРјР° РІ
 							// СЃС‚РѕРєРµ " ;
 							checkRow = false;
-							System.out.println("error");
 						}
 		}
+		System.out.println(checkRow);
 		return checkRow;
 	}
 }

@@ -5,7 +5,7 @@
 <body>
 	<div th:fragment="mainPart">
 		<form action="#" th:action="@{/createInDoc}"
-			th:object="${ExDocWEBList}" method="post">
+			th:object="${WEBList}" method="post">
 			<div class="row mb--20">
 				<div class="col-1">номер</div>
 				<div class="col-2">место приема</div>
@@ -14,18 +14,18 @@
 				<div class="col-2">количество</div>
 				<div class="col-1">удалить</div>
 			</div>
-			
-				<div  th:each="doc,iter : ${ExDocWEBList.docList}" class="row mb--20">
+			<div th:if="${#lists.isEmpty(docList)}" >
+				<div th:each="row , iter : *{docList}" class="row mb--20">
 					<div class="col-1">
-						<span th:text="${iter.index}+1"></span> <input
-							th:field="*{docList[__${iter.index}__].docType}" type="text"
+						<span th:text="${iter.index}+1"></span>
+						 <input th:field="*{docList[__${iter.index}__].docType}" type="text"
 							th:value="INDOC" hidden="hidden" />
 					</div>
 					<div class="col-2">
 						<select class="form-control selectpicker"
 							th:field="*{docList[__${iter.index}__].inLocation}"
 							th:onchange="'searchOutBox('+${iter.index}+')'"
-							th:id="'doc'+${iter.index}+'inLocation'">
+							th:id="'docList'+${iter.index}+'inLocation'">
 							<option th:each="entry : ${locationList.entrySet()}"
 								th:value="${entry.key}" th:text="${entry.value}">This
 								will be replaced - is only used for natural templating</option>
@@ -61,14 +61,15 @@
 
 
 				</div>
-	
+	</div>
 			<input type="submit" value="создать документ" class="btn btn-size-md" />
 			<input class="btn btn-size-md" id="searchInstrument" value="add row"
 				onclick="addRow()" />
-			<ul th:if="${#fields.hasErrors('*')}">
+			<!--  <ul th:if="${#fields.hasErrors('*')}">
 				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
 					is incorrect</li>
 			</ul>
+			-->
 		</form>
 		<script>
 		function searchOutBox(id) {
